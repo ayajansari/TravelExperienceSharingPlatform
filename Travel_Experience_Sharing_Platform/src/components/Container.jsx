@@ -7,7 +7,7 @@ function Container({
 
 
     return (
-        <div className={`w-full p-2 h-screen mx-auto  bg-slate-50  ${className}`}>
+        <div className={`w-full  h-screen mx-auto  bg-slate-50  ${className}`}>
             {children}
         </div>
     )

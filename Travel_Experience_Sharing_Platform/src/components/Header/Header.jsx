@@ -85,8 +85,8 @@ function Header(){
 
                     {/* theme-change button and profile button  */}
                     <div className="flex">
-                        <div className="px-2 py-2 mb-2 mt-3 rounded-sm mr-2  md:ml-2  md:mr-2 md:inline-block   bg-[#006494] text-white " >
-                            Th
+                        <div className="px-2 py-2 mb-2 mt-3 rounded-sm mr-2  md:ml-1  md:mr-1 md:inline-block border border-slate-300 hover:bg-slate-200 " >
+                            <img src="/src/assets/night-mode.png" className="w-6" alt="" />
                         </div>
                         {authStatus && (
                             <div 
