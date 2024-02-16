@@ -42,7 +42,7 @@ function Signup(){
             <div className=" border border-r-2 rounded-lg  max-w-sm m-2 bg-white" >
                 <div className=" flex flex-col  px-6 py-4 "> 
                 
-                    <img src="/src/assets/2.png" className="h-12 px-16 my-4 bg-white"  alt="" />
+                    <img src="/src/assets/Brand_name.png" className="h-12 px-16 my-4 bg-white"  alt="" />
                     <p className="text-center text-black text-lg mb-2 font-semibold">Sign Up</p>          
                     
                     <form  className="flex flex-col " onSubmit={handleSubmit(formSubmit)}> 
