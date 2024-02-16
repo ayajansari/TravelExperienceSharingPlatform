@@ -27,8 +27,8 @@ function Home(){
         
 
             
-            <div className="w-full py-72 lg:bg-center md:bg-cover xl:bg-auto     bg-[url('/src/assets/landing6.jpg')]" > 
-                <div className="w-2/3 px-auto mx-auto lg:mr-auto lg:ml-40 flex flex-col lg:items-start items-center">
+            <div className="w-full pt-72 pb-56 lg:pb-60 xl:pb-72  lg:bg-cover  sm:bg-center  bg-[#006494]   bg-[url('/src/assets/landing1.png')]" > 
+                <div className="w-2/3 md:w-9/12 px-auto mx-auto lg:mr-auto lg:ml-40 flex flex-col lg:items-start items-center">
 
             
                     <h1 className="text-2xl text-center lg:text-start lg:text-4xl  lg:w-8/12  md:text-4xl md:w-8/12 sm:text-3xl sm:w-8/12  text-white font-bold">Share Your Journeys, Connect with Travelers</h1>
