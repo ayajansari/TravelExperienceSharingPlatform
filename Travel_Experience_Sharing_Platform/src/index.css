@@ -5,18 +5,17 @@ body::-webkit-scrollbar{
 
 #custom-ScrollBar::-webkit-scrollbar{
  
-  background-color: #0065943c;
-  border-radius: 10px;
-  height: 3px;
+  display: none;
   
 
 }
+/*
 #custom-ScrollBar::-webkit-scrollbar-thumb{
   background-color:#006494;
   border-radius: 10px;
 
 
-}
+} */
 
 
 /* to hide scroll bar we just need to add custom id or class in tag and here

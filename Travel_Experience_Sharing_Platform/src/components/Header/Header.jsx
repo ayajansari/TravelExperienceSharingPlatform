@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import {Logo} from "../../exports";
+import {Logo,Logout} from "../../exports";
 import { useSelector } from "react-redux";
 
 function Header(){
@@ -97,25 +97,37 @@ function Header(){
 
                                 {/* show profile section when click of profile icon */}
                                 {showProfile && (
-                                    <div className="absolute top-14 right-4 flex flex-col mt-2  bg-white rounded-md shadow-2xl" >
+                                    <div className="absolute top-14 right-4 flex flex-col mt-2  bg-white rounded-md  shadow-2xl" >
 
-                                        <div className="flex items-center px-4 py-3 border-b border-b-[#d5dde1]">
+                                        <div className="flex items-center px-4 py-3 border-b-2 border-b-[#d5dde1]">
                                             <img src="/src/assets/user.png" className="pr-4 "  alt="" />
                                             <span className="inline-block text-[#006494] text-md font-semibold">Mohammad Ayaj</span>
                                         </div>
 
-                                        <Link to={"/users"}>
-                                            <div className="flex items-center px-4 py-2 text-black text-md hover:bg-sky-200 ">
-                                                <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" />
-                                                <span className=" pl-3"> Edit Profile</span>
+                                        <Link to={"/dashboard"}>
+                                            <div className="flex items-center  text-black text-md  ">
+                                                {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
+                                                <span className=" w-full pl-4  ml-4 my-3  hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold">My Dashboard </span>
+                                            </div>
+                                        </Link>
+                                        <Link to={"/edit"}>
+                                            <div className="flex items-center  text-black text-md  ">
+                                                {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
+                                                <span className="w-full pl-4 ml-4 my-3 hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold">Edit Profile </span>
+                                            </div>
+                                        </Link>
+                                        <Link to={"/settings"}>
+                                            <div className="flex items-center  text-black text-md  ">
+                                                {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
+                                                <span className="w-full  pl-4  ml-4 mt-2 mb-3 hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold">Account Settings</span>
                                             </div>
                                         </Link>
                                         
-                                        <div className="hover:bg-sky-200 rounded-bl-lg rounded-br-lg cursor-pointer" >
-                                            <hr className="w-full border-[#d5dde1] " />
-                                            <div className="flex items-center px-4 pt-2 pb-3 text-black text-md  ">
-                                                <img src="/src/assets/turn-off.png" className="w-6 pl-1 " alt="" />
-                                                <Logout className="pl-3 " />
+                                        <div className=" rounded-bl-lg rounded-br-lg cursor-pointer" >
+                                            <hr className="w-full border-b-2 border-b-[#d5dde1] " />
+                                            <div className="flex items-center  text-black text-md  ">
+                                                {/* <img src="/src/assets/turn-off.png" className="w-6 pl-1 " alt="" /> */}
+                                                <Logout className="w-full pl-4 mx-4 my-3 hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold" />
                                             </div>  
                                         </div>
                                         

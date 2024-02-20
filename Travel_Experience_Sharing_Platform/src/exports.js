@@ -2,7 +2,7 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header.jsx";
 import PostForm from "./components/PostForm/PostForm";
 
-import AuthLayout from "./components/AuthLayout.jsx";
+import Container from "./components/Container.jsx";
 import AddPost from "./pages/AddPost";
 import EditPost from "./pages/EditPost";
 import Home from "./pages/Home";
@@ -22,6 +22,6 @@ import CommunityCard from "./components/CommunityCard.jsx";
 import TestimonialCard from "./components/TestimonialCard.jsx";
 export{
     Footer,Header,PostForm, AddPost,EditPost,Home,
-    Login,Signup,MyPosts,Search,Post,AuthLayout,Logout,InputButton,InputField,
+    Login,Signup,MyPosts,Search,Post,Container,Logout,InputButton,InputField,
     authService,Logo,FooterLink,FeatureCard,CommunityCard,TestimonialCard
 }

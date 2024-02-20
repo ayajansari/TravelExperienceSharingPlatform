@@ -78,7 +78,7 @@ function Home(){
                     <p className="w-2/3 mx-auto pt-2 text-center text-[#000000b5] text-lg">Discover What Others Have Experienced </p>
                 </div>
                 
-                <div id="custom-ScrollBar" className="  flex   overflow-x-scroll   flex-nowrap mx-4 sm:mx-8 md:mx-16 lg:mx-20 xl:mx-28 my-4 bg-[#ffffff8e]">
+                <div id="custom-ScrollBar" className="  flex   overflow-x-scroll   flex-nowrap mx-4 sm:mx-8 md:mx-16 lg:mx-20 xl:mx-28 mt-6 mb-20 bg-[#ffffff8e]">
                     <TestimonialCard 
                         label="I've been a part of this amazing travel community for years, and it never fails to inspire me. From hidden gems to insider tips, I've discovered countless treasures thanks to the shared experiences of fellow travelers."
                         user="- Raj S"

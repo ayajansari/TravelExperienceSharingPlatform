@@ -2,7 +2,7 @@ import React, { useEffect,useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { Header,Footer,AuthLayout } from './exports'
+import { Header,Footer,Container } from './exports'
 import {authService} from './exports'
 import { useDispatch, useSelector } from 'react-redux'
 import {login,logout} from "./store/authSlice"
@@ -47,9 +47,9 @@ function App({children}) {
   return   (
     <>
       <Header />
-      <AuthLayout>
+      <Container>
           {children}
-      </AuthLayout>
+      </Container>
       <Footer/>
     </>
   )
