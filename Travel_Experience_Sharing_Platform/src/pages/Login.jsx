@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, InputButton, InputField } from "../exports";
+import {  InputButton, InputField } from "../exports";
 import { Link } from "react-router-dom";
 import {useForm} from "react-hook-form"
 import {authService} from "../exports";
@@ -45,7 +45,7 @@ function Login(){
     }
     
     return (
-        <Container  className=" flex  justify-center items-center h-screen  bg-[#F7F8F9]">
+        <div  className=" flex  justify-center items-center h-screen  bg-slate-100">
        
 
           
@@ -113,7 +113,7 @@ function Login(){
       
             </div>
            
-        </Container>
+        </div>
     )
 }
 export default Login

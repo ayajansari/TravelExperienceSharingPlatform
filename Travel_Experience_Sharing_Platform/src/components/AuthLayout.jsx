@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Container from "./Container";
+
 import {useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 function AuthLayout({children}){
@@ -9,19 +9,14 @@ function AuthLayout({children}){
     const data=useSelector((state)=> state.auth.userData)
     console.log(authStatus,"and ",data)
     
-    // useEffect(()=>{
-    //     if(!authStatus){
-            // navigate("/")
-    //     }
-    // },[authStatus])
 
-    // authStatus?
+ 
     return  (
-        <Container>
+        <div>
             
                 {children}
             
-        </Container>
+        </div>
     )
 }
 

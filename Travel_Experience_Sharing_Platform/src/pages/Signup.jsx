@@ -1,5 +1,5 @@
 import React,{ useState } from "react";
-import { Container, InputButton, InputField } from "../exports";
+import { InputButton, InputField } from "../exports";
 import { Link } from "react-router-dom";
 import { useForm} from "react-hook-form"
 import {authService} from "../exports";
@@ -37,7 +37,7 @@ function Signup(){
     }
 
     return (
-        <Container  className=" flex  justify-center items-center h-screen  bg-[#F7F8F9]">
+        <div  className=" flex  justify-center items-center h-screen  bg-slate-100">
 
             <div className=" border border-r-2 rounded-lg  max-w-sm m-2 bg-white" >
                 <div className=" flex flex-col  px-6 py-4 "> 
@@ -108,7 +108,7 @@ function Signup(){
                 </div>
             </div>
            
-        </Container>
+        </div>
     )
 }
 export default Signup

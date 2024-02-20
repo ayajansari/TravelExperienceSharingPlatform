@@ -31,9 +31,12 @@ function App({children}) {
         prom.then((data)=>{
 
           dispatch(login(data))
-          navigate("/")     //if user logged in and reload page
+           //if user logged in and reloaded page
 
+        }).catch(()=>{
+          navigate("/")
         })
+        
       }
       else{
         console.log("user is logged in already")
@@ -41,7 +44,7 @@ function App({children}) {
 
 },[])   //depedencies are empty because when this app.jsx render then only it will be executed
 
-  return (
+  return   (
     <>
       <Header />
       <AuthLayout>

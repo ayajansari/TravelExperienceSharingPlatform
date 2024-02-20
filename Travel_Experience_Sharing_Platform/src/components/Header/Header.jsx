@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {Container, Logout} from "../../exports"
+
 import {Logo} from "../../exports";
 import { useSelector } from "react-redux";
 
@@ -75,7 +75,7 @@ function Header(){
                         <ul className="flex ml-auto   ">
                             {navItems.map((item)=> item.active? (
                                 <Link to={`${item.slug}`}>
-                                    <li className={`px-4  py-2 mx-1 mb-2 mt-3  flex  font-semibold bg-white text-[#006494] hover:text-white hover:bg-[#006494] rounded-sm `} key={item.slug} > 
+                                    <li className={`px-4  py-2 mx-1 mb-2 mt-3  flex  font-semibold bg-white text-[#00000096] hover:text-white hover:bg-[#006494]  rounded-sm `} key={item.slug} > 
                                         {item.name}
                                     </li>
                                 </Link>  
@@ -85,7 +85,7 @@ function Header(){
 
                     {/* theme-change button and profile button  */}
                     <div className="flex">
-                        <div className="px-2 py-2 mb-2 mt-3 rounded-sm mr-2  md:ml-1  md:mr-1 md:inline-block border border-slate-300 hover:bg-slate-200 " >
+                        <div className="px-2 py-2 mb-2 mt-3 rounded-sm mr-2  md:ml-1  md:mr-1 md:inline-block  hover:bg-slate-100 " >
                             <img src="/src/assets/night-mode.png" className="w-6" alt="" />
                         </div>
                         {authStatus && (
