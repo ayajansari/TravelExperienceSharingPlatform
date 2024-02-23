@@ -28,12 +28,12 @@ function Footer(){
                    
                 </div> 
             </div>
-            <div className="flex flex-col md:items-center items-start py-12 px-8 md:m-4  " >
+            <div className="flex flex-col md:items-center items-start py-8 px-8 md:m-4  " >
                 <h1 className="text-white  font-semibold text-lg">Subscribe to our Newsletter</h1>
                 <p className="text-[#ffffff95] mt-1 mb-1 ">The latest news, articles, and resources, sent to your inbox weekly.</p>
                 <div className="" >
-                    <input type="text" placeholder="Enter your Email" className="py-2 px-3  mr-4 my-1 rounded-md w-56" />
-                    <input type="button" value="Subscribe" className= "text-[#006494] bg-white   font-semibold   py-2 px-3 rounded-md" />
+                    <input type="text" placeholder="Enter your Email" className="focus:outline-none py-2 px-3  mr-4 my-1 rounded-md w-72" />
+                    <input type="button" value="Subscribe" className= "text-[#006494] font-bold bg-white p-2 rounded-md" />
                 </div>
             </div>
 

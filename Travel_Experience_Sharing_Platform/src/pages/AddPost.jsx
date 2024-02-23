@@ -1,12 +1,11 @@
 import React from "react";
+import { PostForm } from "../exports";
 
 function AddPost(){
 
 
     return (
-        <div>
-            <h2>AddPost component</h2>
-        </div>
+        <PostForm/>
     )
 }
 export default AddPost

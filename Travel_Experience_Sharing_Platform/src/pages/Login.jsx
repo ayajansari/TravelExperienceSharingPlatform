@@ -58,8 +58,8 @@ function Login(){
                 <p className="text-center text-black text-lg mb-2 font-semibold">Welcome Back</p>
                 {/* <div className="px-2 py-2 m-2 font-semibold text-center text-lg text-white bg-[#00a6fb] rounded-sm  ">Continue with Google</div> */}
                 {/* <div className="px-2 py-2 m-2 font-semibold text-center text-lg text-white bg-[#00a6fb] rounded-sm   ">Continue with Facebook</div> */}
-                <InputButton className="bg-[#00a6fb]" content={"Continue with Google"}  onClick={loginByGoogle} />
-                <InputButton className="bg-[#00a6fb]" content={"Continue with Facebook"} onClick={loginByFacebook} />
+                <InputButton className="bg-[#00a6fb] px-2 py-2 m-2 font-semibold text-center text-lg text-white  rounded-sm" content={"Continue with Google"}  onClick={loginByGoogle} />
+                <InputButton className="bg-[#00a6fb] px-2 py-2 m-2 font-semibold text-center text-lg text-white  rounded-sm" content={"Continue with Facebook"} onClick={loginByFacebook} />
 
                 
                 
@@ -74,6 +74,7 @@ function Login(){
                     <InputField 
                         type="email"
                         placeholder="Enter Email"
+                        className="px-2 py-2 m-2 border  hover:border-[#1080e9]  focus:outline-none focus:border-1 focus:border-[#1080e9] rounded-sm "
                         {...register("email",{
                             required:true,
                             pattern:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -101,7 +102,7 @@ function Login(){
                     </div>
                     
                     
-                    <InputButton type="submit" className="bg-[#006494]" content="Log In" />
+                    <InputButton type="submit" className="bg-[#006494] px-2 py-2 m-2 font-semibold text-center text-lg text-white  rounded-sm" content="Log In" />
                     {/* <div  className="px-2 py-2 m-2 font-semibold text-lg bg-[#006494] text-white rounded-sm text-center " >Log In</div> */}
                     
                 </form >

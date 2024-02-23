@@ -52,6 +52,7 @@ function Signup(){
                         <InputField 
                             type="text"
                             placeholder="Enter Full Name"
+                            className="px-2 py-2 m-2 border  hover:border-[#1080e9]  focus:outline-none focus:border-1 focus:border-[#1080e9] rounded-sm "
                             {...register("name",{
                                 required:true
                             })}
@@ -59,6 +60,7 @@ function Signup(){
                         <InputField 
                             type="email"
                             placeholder="Enter Email" 
+                            className="px-2 py-2 m-2 border  hover:border-[#1080e9]  focus:outline-none focus:border-1 focus:border-[#1080e9] rounded-sm "
                             {...register("email",{
                                 required:true,
                                 pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/

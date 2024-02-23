@@ -14,6 +14,7 @@ function Home(){
         
         if(authStatus){
             //get all posts from db
+            
         }
         
     })
@@ -52,10 +53,8 @@ function Home(){
                 <div className="flex xsm:flex-row flex-col justify-center  md:mx-32 xsm:mx-8 mx-6 my-4">
                     <CommunityCard value="999K+" lable="Modules to learn" />
                     <CommunityCard value="99K+" lable="Active Travelers" />
-                    <CommunityCard value="199+" lable="Country Experiences" />
-                    
-                </div>
-                    
+                    <CommunityCard value="199+" lable="Country Experiences" />      
+                </div>         
             </div>
 
             {/* features section */}
@@ -64,14 +63,11 @@ function Home(){
                 <div className="w-full pt-8 pb-16 flex xsm:flex-row flex-col justify-center   text-center  "> 
                     <FeatureCard src="/src/assets/feature1.png" label="Share your Travel Experience with others" />
                     <FeatureCard src="/src/assets/feature2.jpg" label="Know more about your Destination" />
-                    <FeatureCard src="/src/assets/feature3.jpg" label="Search Experiences across the world" />
-                    
+                    <FeatureCard src="/src/assets/feature3.jpg" label="Search Experiences across the world" />         
                 </div>
             </div>
 
-
             {/*testimonials  */}
-            
             <div className="">
                 <div className="">
                     <p className="mx-6 text-3xl text-center font-semibold">Loved by users worldwide</p>
@@ -104,15 +100,7 @@ function Home(){
                         user="- Gaurav S"
                     />
                 </div>
-            </div>
-            {/* <div className="flex overflow-x-scroll flex-nowrap">
-                <div className="min-w-52  min-h-52 border border-black m-2 bg-slate-200"></div>
-                <div className="min-w-52 min-h-52 border border-black m-2 bg-slate-200"></div>
-                <div className="min-w-52 min-h-52 border border-black m-2 bg-slate-200"></div>
-                <div className="min-w-52 min-h-52 border border-black m-2 bg-slate-200"></div>
-                <div className="min-w-52 min-h-52 border border-black m-2 bg-slate-200"></div>
-            </div> */}
-            
+            </div>    
         </div>
     )
 }

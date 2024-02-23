@@ -8,7 +8,7 @@ class Authentication{
     account;
     constructor(){
         this.client
-            .setEndpoint(variables.myUrl)
+            .setEndpoint(variables.myAppwriteUrl)
             .setProject(variables.myProjectId);
     
         this.account=new Account(this.client);

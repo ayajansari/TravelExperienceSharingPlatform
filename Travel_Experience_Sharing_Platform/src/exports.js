@@ -20,8 +20,11 @@ import FooterLink from "./components/FooterLink.jsx";
 import FeatureCard from "./components/FeatureCard.jsx";
 import CommunityCard from "./components/CommunityCard.jsx";
 import TestimonialCard from "./components/TestimonialCard.jsx";
+import RTE from "./components/RTE.jsx";
+
 export{
     Footer,Header,PostForm, AddPost,EditPost,Home,
     Login,Signup,MyPosts,Search,Post,Container,Logout,InputButton,InputField,
-    authService,Logo,FooterLink,FeatureCard,CommunityCard,TestimonialCard
+    authService,Logo,FooterLink,FeatureCard,CommunityCard,TestimonialCard,RTE,
+
 }

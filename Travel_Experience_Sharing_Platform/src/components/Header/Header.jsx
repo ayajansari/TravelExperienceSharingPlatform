@@ -6,9 +6,10 @@ import { useSelector } from "react-redux";
 
 function Header(){
     const authStatus=useSelector((state)=>state.auth.status)
-    const [showMenu,setshowMenu]=useState(false)
+    const authData=useSelector((state)=>state.auth.userData)
+    const [showMenu,setshowMenu]=useState(true)
     const [showProfile,setShowProfile]=useState(false)
-  
+
     const navItems=[ 
         
         {
@@ -51,7 +52,7 @@ function Header(){
 
     return (
         
-        <div className="sticky top-0 bg-white">
+        <div className="sticky top-0 bg-white z-50">
             <div className={`   w-full  border-b-2  border-b-[#e8f1f2] `} >
 
                 {/* nav-bar */}
@@ -93,33 +94,33 @@ function Header(){
                                 className="px-4 py-2 mb-2 mt-3 rounded-sm  md:ml-2  md:mr-3 shadow-md  bg-[#006494] text-white " 
                                 onClick={()=>setShowProfile(!showProfile)}
                             >
-                                <span className="">AJ</span>
+                                <span className="text-lg">{authData.name[0].toUpperCase()}</span>
 
                                 {/* show profile section when click of profile icon */}
                                 {showProfile && (
-                                    <div className="absolute top-14 right-4 flex flex-col mt-2  bg-white rounded-md  shadow-2xl" >
+                                    <div className="absolute top-14 right-4 w-72 flex flex-col mt-2  bg-white rounded-md  shadow-2xl" >
 
                                         <div className="flex items-center px-4 py-3 border-b-2 border-b-[#d5dde1]">
                                             <img src="/src/assets/user.png" className="pr-4 "  alt="" />
-                                            <span className="inline-block text-[#006494] text-md font-semibold">Mohammad Ayaj</span>
+                                            <span className="inline-block text-[#006494] text-md font-semibold">{authData.name}</span>
                                         </div>
 
                                         <Link to={"/dashboard"}>
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
-                                                <span className=" w-full pl-4  ml-4 my-3  hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold">My Dashboard </span>
+                                                <span className=" w-full pl-4 py-1  ml-4 mt-3  hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold">My Dashboard </span>
                                             </div>
                                         </Link>
                                         <Link to={"/edit"}>
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
-                                                <span className="w-full pl-4 ml-4 my-3 hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold">Edit Profile </span>
+                                                <span className="w-full pl-4 py-1 ml-4 mt-3 hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold">Edit Profile </span>
                                             </div>
                                         </Link>
                                         <Link to={"/settings"}>
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
-                                                <span className="w-full  pl-4  ml-4 mt-2 mb-3 hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold">Account Settings</span>
+                                                <span className="w-full  pl-4 py-1  ml-4 mt-3 mb-3 hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold">Account Settings</span>
                                             </div>
                                         </Link>
                                         
@@ -127,7 +128,7 @@ function Header(){
                                             <hr className="w-full border-b-2 border-b-[#d5dde1] " />
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/turn-off.png" className="w-6 pl-1 " alt="" /> */}
-                                                <Logout className="w-full pl-4 mx-4 my-3 hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold" />
+                                                <Logout className="w-full pl-4 py-1 mx-4 my-3 hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold" />
                                             </div>  
                                         </div>
                                         
@@ -147,16 +148,21 @@ function Header(){
                     className="  w-full absolute top-0 left-0 backdrop-blur-sm bg-[#006494]/30 z-50"
                     onClick={()=>setshowMenu(!showMenu)}
                 >
-                    <div className="  w-72 h-screen   bg-[#006494] px-3">
-                    <div className="w-full " onClick={()=>setshowMenu(!showMenu)} > <img src="/src/assets/close.png" alt="X" className="w-4 ml-auto mr-2 pt-4  " /></div>
+                    <div className="  w-72 h-screen   bg-white px-3">
+                    <div className="w-full " onClick={()=>setshowMenu(!showMenu)} > 
+                        <div className="py-4 px-2">
+                            <p className="w-8 ml-auto  mr-2 p-2 text-black hover:bg-[#0000000a] font-bold text-lg rounded-sm">X</p>
+                        </div>
+                       
+                    </div>
                         
                         <div className="flex flex-col   ">
                             {navItems.map((item)=> item.active? (
                                 <Link to={`${item.slug}`}>   
-                                    <div className={`px-4 py-2 ml-2 mr-12 mb-2 mt-3 flex font-semibold  text-white hover:border-white hover:border  rounded-sm `}
+                                    <div className={`px-2 py-2 ml-2 mr-12 mb-2 mt-3 flex font-semibold  text-black hover:bg-[#0000000a]  hover:border-l-4 hover:border-l-[#006494]  rounded-sm `}
                                         onClick={()=>setshowMenu(!showMenu)}     
                                     >   
-                                        <img src={item.img} className="w-6 " alt="" />
+                                        {/* <img src={item.img} className="w-6 " alt="" /> */}
                                         <p className="pl-4">{item.name}</p>    
                                     </div>
                                 </Link>   
