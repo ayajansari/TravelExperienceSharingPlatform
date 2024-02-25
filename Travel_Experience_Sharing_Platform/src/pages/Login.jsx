@@ -15,25 +15,26 @@ function Login(){
     const navigate=useNavigate()
    
     const formSubmit=async(data)=>{
-        try{
+        fetch("http://localhost:5173/login")
+        // try{
 
-            console.log("login submit working",data)
-            const session=await authService.login(data);
-            if(session){
-                const userData=await authService.getCurrentUser();
-                console.log("current user:",userData["$id"])
-                if(userData){
-                    dispatch(authLogin(userData))
+        //     console.log("login submit working",data)
+        //     const session=await authService.login(data);
+        //     if(session){
+        //         const userData=await authService.getCurrentUser();
+        //         console.log("current user:",userData["$id"])
+        //         if(userData){
+        //             dispatch(authLogin(userData))
                   
-                    navigate("/")
+        //             navigate("/")
                     
-                }
-            }
+        //         }
+        //     }
 
-        }catch(error){
-            console.log(error.message)
+        // }catch(error){
+        //     console.log(error.message)
 
-        }
+        // }
         
 
     }

@@ -3,5 +3,6 @@
 # adding multiple images  in post
 #email verification and show some content only to verified users
 #forgot password
-#change appwrite and used backend
+#change appwrite and use mongodb as db backend and (auth service will be appwrite)
 #color the options on which user is currently using
+#use nodejs+expressjs in backend use postman for api 
