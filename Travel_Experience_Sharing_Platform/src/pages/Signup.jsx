@@ -14,6 +14,7 @@ function Signup(){
     const {register,handleSubmit}=useForm()
     const dispatch=useDispatch()
     const navigate=useNavigate()
+    const [error,setError]=useState("");
 
     const formSubmit=async(data)=>{
 
@@ -28,7 +29,7 @@ function Signup(){
                 }
             }
         } catch (error) {
-            console.log(error)
+            setError(error.message)
         }
      
         
@@ -43,7 +44,8 @@ function Signup(){
                 <div className=" flex flex-col  px-6 py-4 "> 
                 
                     <img src="/src/assets/Brand_name.png" className="h-12 px-16 my-4 bg-white"  alt="" />
-                    <p className="text-center text-black text-lg mb-2 font-semibold">Sign Up</p>          
+                    <p className="text-center text-black text-lg mb-2 font-semibold">Sign Up</p> 
+                    {error && (<p className="text-center text-red-800 text-sm mb-2 ">{error}</p>  )}         
                     
                     <form  className="flex flex-col " onSubmit={handleSubmit(formSubmit)}> 
 

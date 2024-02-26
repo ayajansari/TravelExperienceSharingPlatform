@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 function Header(){
     const authStatus=useSelector((state)=>state.auth.status)
     const authData=useSelector((state)=>state.auth.userData)
-    const [showMenu,setshowMenu]=useState(true)
+    const [showMenu,setshowMenu]=useState(false)
     const [showProfile,setShowProfile]=useState(false)
 
     const navItems=[ 
@@ -149,12 +149,12 @@ function Header(){
                     onClick={()=>setshowMenu(!showMenu)}
                 >
                     <div className="  w-72 h-screen   bg-white px-3">
-                    <div className="w-full " onClick={()=>setshowMenu(!showMenu)} > 
-                        <div className="py-4 px-2">
-                            <p className="w-8 ml-auto  mr-2 p-2 text-black hover:bg-[#0000000a] font-bold text-lg rounded-sm">X</p>
+                        <div className="w-full " onClick={()=>setshowMenu(!showMenu)} > 
+                            <div className="py-4 px-2">
+                                <p className="w-8 ml-auto  mr-2 p-2 text-black bg-[#0000000a] font-bold text-lg rounded-sm">X</p>
+                            </div>
+                        
                         </div>
-                       
-                    </div>
                         
                         <div className="flex flex-col   ">
                             {navItems.map((item)=> item.active? (

@@ -13,28 +13,28 @@ function Login(){
     const {register,handleSubmit}=useForm()
     const dispatch=useDispatch()
     const navigate=useNavigate()
+    const [error,setError]=useState("")
    
     const formSubmit=async(data)=>{
-        fetch("http://localhost:5173/login")
-        // try{
+        try{
 
-        //     console.log("login submit working",data)
-        //     const session=await authService.login(data);
-        //     if(session){
-        //         const userData=await authService.getCurrentUser();
-        //         console.log("current user:",userData["$id"])
-        //         if(userData){
-        //             dispatch(authLogin(userData))
+            console.log("login submit working",data)
+            const session=await authService.login(data);
+            if(session){
+                const userData=await authService.getCurrentUser();
+                console.log("current user:",userData["$id"])
+                if(userData){
+                    dispatch(authLogin(userData))
                   
-        //             navigate("/")
+                    navigate("/")
                     
-        //         }
-        //     }
+                }
+            }
 
-        // }catch(error){
-        //     console.log(error.message)
+        }catch(error){
+            setError(error.message)
 
-        // }
+        }
         
 
     }
@@ -69,6 +69,7 @@ function Login(){
                     <p className="1/5 px-4 text-xs font-semibold">OR</p>
                     <hr className="w-2/5" />
                 </div>
+                {error && (<p className="text-center text-red-800 text-sm mb-2 ">{error}</p>  )}         
                 <form  className="flex flex-col " onSubmit={handleSubmit(formSubmit)} > 
                     
                     {/* <input type="email" placeholder="Enter Email" className=" px-2 py-2 m-2 border  hover:border-[#1080e9]  focus:outline-none focus:border-1 focus:border-[#1080e9] rounded-sm "/> */}
