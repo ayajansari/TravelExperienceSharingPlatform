@@ -11,6 +11,7 @@ const InputField=React.forwardRef(function InputField({
         <input 
             type={type} 
             placeholder={placeholder} 
+            
             className={className} 
             {...props} 
             ref={ref}

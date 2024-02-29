@@ -7,3 +7,4 @@
 #color the options on which user is currently using
 #use nodejs+expressjs in backend use postman for api 
 #create a table for newsletters
+#create selectComponent and replace select tags from postform

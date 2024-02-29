@@ -9,7 +9,7 @@ function PostForm({post}){
 
     const { register,control,watch, handleSubmit,  setValue,  getValues } = useForm({
         defaultValues: {    
-            title: post?.title || "myhf",
+            title: post?.title || "",
             country:post?.country || "India",
             state:post?.state || "America",
             place:post?.place || "",
@@ -46,7 +46,7 @@ function PostForm({post}){
         } else { 
                
             console.log(data)
-        
+            
             const file = await appwriteService.uploadFile(data.image[0]);//to get imageID
             console.log("file uploaded",file)
             if (file) {
@@ -65,13 +65,14 @@ function PostForm({post}){
     }
 
     const slugTransform = useCallback((value) => {
-        if (value && typeof value === "string")
+        if (value ){
+            
             return value
-                .trim()
+                .trim() //remove white spaces
                 .toLowerCase()
                 .replace(/[^a-zA-Z\d\s]+/g, "-")
                 .replace(/\s/g, "-");
-
+        }
         return "";
     }, []);
 
@@ -94,12 +95,14 @@ function PostForm({post}){
                     
                     <div className="flex flex-col">
                         <InputField 
-                            
-                            placeholder="Title of your Post" 
+                            type="type"
+                            placeholder="Title of your Post"
+                            onInput={(e)=> setValue("slug", slugTransform(e.target.value))} 
                             className=" py-2 px-4 my-2 border focus:outline-none focus:border-[#006494] rounded-sm"
                             {...register("title",{
                                 required:true
                             })}
+                        
                         />
 
                         <div className="flex md:flex-row flex-col md:justify-between   ">

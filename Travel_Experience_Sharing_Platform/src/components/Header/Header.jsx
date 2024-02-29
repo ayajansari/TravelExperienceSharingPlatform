@@ -16,37 +16,37 @@ function Header(){
             name:"Home",
             slug:"/",
             active:true,
-            img:"src/assets/home2.png"     
+            img:"/src/assets/home1.png"     
         },
         {
             name:"Login",
             slug:"/login",
             active:!authStatus,
-            img:"/src/assets/user-login.png"
+            img:"/src/assets/login.png"
         },
         {
             name:"Signup",
             slug:"/signup",
             active:!authStatus,
-            img:"/src/assets/signup.png"
+            img:"/src/assets/signup1.png"
         },
         {
             name:"Search",
             slug:"/search",
             active:authStatus,
-            img:"/src/assets/search.png"
+            img:"/src/assets/search1.png"
         },
         {
             name:"My Posts",
             slug:"/my-posts",
             active:authStatus,
-            img:"/src/assets/list.png"
+            img:"/src/assets/to-do-list.png"
         },
         {
             name:"Add Post",
             slug:"/add-post",
             active:authStatus,
-            img:"/src/assets/add-post.png"
+            img:"/src/assets/add-post1.png"
         }
     ]
 
@@ -159,10 +159,10 @@ function Header(){
                         <div className="flex flex-col   ">
                             {navItems.map((item)=> item.active? (
                                 <Link to={`${item.slug}`}>   
-                                    <div className={`px-2 py-2 ml-2 mr-12 mb-2 mt-3 flex font-semibold  text-black hover:bg-[#0000000a]  hover:border-l-4 hover:border-l-[#006494]  rounded-sm `}
+                                    <div  className={`px-2 py-3 ml-2 mr-12 mt-2 flex font-semibold  text-black  hover:bg-[#00659410]    border-l-4 border-white  hover:border-[#006494] h-full `}
                                         onClick={()=>setshowMenu(!showMenu)}     
                                     >   
-                                        {/* <img src={item.img} className="w-6 " alt="" /> */}
+                                        <img src={item.img} className=" w-5 h-5 mt-1 ml-4" alt="" />
                                         <p className="pl-4">{item.name}</p>    
                                     </div>
                                 </Link>   
