@@ -9,7 +9,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import MyPosts from "./pages/MyPosts";
-import Search from "./pages/Search"; 
+import Search from "./components/Search.jsx"; 
 import Post from "./pages/Post";
 import Logout from "./components/Header/Logout.jsx";
 import InputButton from "./components/InputButton.jsx";
@@ -21,10 +21,13 @@ import FeatureCard from "./components/FeatureCard.jsx";
 import CommunityCard from "./components/CommunityCard.jsx";
 import TestimonialCard from "./components/TestimonialCard.jsx";
 import RTE from "./components/RTE.jsx";
+import PostCard from "./components/PostCard.jsx";
+import Select from "./components/Select.jsx";
 
 export{
     Footer,Header,PostForm, AddPost,EditPost,Home,
     Login,Signup,MyPosts,Search,Post,Container,Logout,InputButton,InputField,
     authService,Logo,FooterLink,FeatureCard,CommunityCard,TestimonialCard,RTE,
+    PostCard,Select
 
 }

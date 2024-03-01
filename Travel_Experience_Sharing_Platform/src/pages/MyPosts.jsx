@@ -1,12 +1,11 @@
 import React from "react";
+import {Home} from "../exports"
 
 function MyPosts(){
 
 
     return (
-        <div>
-            <h2>MyPosts component</h2>
-        </div>
+        <Home  showMyPosts={true} />
     )
 }
 export default MyPosts

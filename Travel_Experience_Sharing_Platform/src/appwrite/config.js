@@ -87,18 +87,33 @@ export class Service{
     }
 
     //get Documents via queries
-    async getPosts(){
+    async getPosts(userId){
         try{
             return await this.databases.listDocuments(
                 variables.myDatabaseId,
                 variables.myCollectionId,
                 [
-                    Query.equal('status','active')  //show only those posts which are active now and not deactivated by auther
+                    Query.equal('userId',userId)  //show only those posts which are active now and not deactivated by auther
                 ]
             )
         }
         catch(error){
             console.log("appwrite service :: getPosts :: error",error)
+            
+        }
+    }
+
+    //get all posts
+    async getAllPosts(){
+        try{
+            return await this.databases.listDocuments(
+                variables.myDatabaseId,
+                variables.myCollectionId,
+                
+            )
+        }
+        catch(error){
+            console.log("appwrite service :: getAllPosts :: error",error)
             
         }
     }

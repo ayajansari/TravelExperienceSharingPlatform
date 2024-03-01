@@ -45,13 +45,13 @@ function App({children}) {
 },[])   //depedencies are empty because when this app.jsx render then only it will be executed
 
   return   (
-    <>
+    < div className='flex flex-col'>
       <Header />
       <Container>
           {children}
       </Container>
       <Footer/>
-    </>
+    </div>
   )
 }
 

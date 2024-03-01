@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 
 import {Logo,Logout} from "../../exports";
 import { useSelector } from "react-redux";
+import { isAction } from "redux";
 
 function Header(){
     const authStatus=useSelector((state)=>state.auth.status)
@@ -29,12 +30,6 @@ function Header(){
             slug:"/signup",
             active:!authStatus,
             img:"/src/assets/signup1.png"
-        },
-        {
-            name:"Search",
-            slug:"/search",
-            active:authStatus,
-            img:"/src/assets/search1.png"
         },
         {
             name:"My Posts",
@@ -75,13 +70,19 @@ function Header(){
                     <div className="md:inline-block hidden">
                         <ul className="flex ml-auto   ">
                             {navItems.map((item)=> item.active? (
-                                <Link to={`${item.slug}`}>
-                                    <li className={`px-4  py-2 mx-1 mb-2 mt-3  flex  font-semibold bg-white text-[#00000096] hover:text-white hover:bg-[#006494]  rounded-sm `} key={item.slug} > 
-                                        {item.name}
+                                
+                                    <li  key={item.slug} > 
+                                        <NavLink to={`${item.slug}`} 
+                                            className={ ({isActive})=> `px-4  py-2 mx-1 mb-2 mt-3  flex  font-semibold bg-white text-[#00000096]  rounded-sm  
+                                            ${isActive? "text-white bg-sky-400 ":null}` }
+                                        >
+                                            {item.name}
+                                        </NavLink>
+                                        
                                     </li>
-                                </Link>  
+                           
                             ) : null)}
-                            </ul> 
+                        </ul> 
                     </div>
 
                     {/* theme-change button and profile button  */}
@@ -158,14 +159,19 @@ function Header(){
                         
                         <div className="flex flex-col   ">
                             {navItems.map((item)=> item.active? (
-                                <Link to={`${item.slug}`}>   
-                                    <div  className={`px-2 py-3 ml-2 mr-12 mt-2 flex font-semibold  text-black  hover:bg-[#00659410]    border-l-4 border-white  hover:border-[#006494] h-full `}
-                                        onClick={()=>setshowMenu(!showMenu)}     
-                                    >   
+                                  
+                                <div  key={item.slug}
+                                    onClick={()=>setshowMenu(!showMenu)}     
+                                >   
+                                    <NavLink to={`${item.slug}`} 
+                                                className={ ({isActive})=>`px-2 py-3 ml-2 mr-12 mt-2 flex font-semibold  text-black  hover:bg-[#00659410]    border-l-4 border-white  hover:border-sky-400 h-full
+                                                ${isActive? 'border-sky-400 bg-sky-50':null}`}
+                                    > 
                                         <img src={item.img} className=" w-5 h-5 mt-1 ml-4" alt="" />
                                         <p className="pl-4">{item.name}</p>    
-                                    </div>
-                                </Link>   
+                                    </NavLink>
+                                </div>
+                                   
                             ) : null)}
 
 

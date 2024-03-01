@@ -1,5 +1,5 @@
-import React from "react";
-import {InputButton, InputField,RTE} from "../../exports"
+import React, { useState } from "react";
+import {InputButton, InputField,RTE,Select} from "../../exports"
 import {get, useForm} from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 import appwriteService from "../../appwrite/config";
@@ -7,15 +7,15 @@ import { useSelector } from "react-redux";
 import { useCallback } from "react";
 function PostForm({post}){
 
-    const { register,control,watch, handleSubmit,  setValue,  getValues } = useForm({
+    const { register,control, handleSubmit,  setValue,  getValues } = useForm({
         defaultValues: {    
             title: post?.title || "",
             country:post?.country || "India",
-            state:post?.state || "America",
-            place:post?.place || "",
+            state:post?.state || "China",
+            place:post?.place || "Japan",
             slug: post?.$id || "",     
             content: post?.content || "",
-            status:post?.status || "active"
+            status:post?.status || "Active"
             
         },
     });
@@ -24,6 +24,10 @@ function PostForm({post}){
     const userData = useSelector((state) => state.auth.userData);
     
     // console.log("user id:",userData)
+    const countryArr=["India","Japan","China","Nepal","Russia"];
+    const stateArr=["India","Japan","China","Nepal","Russia"];
+    const placeArr=["India","Japan","China","Nepal","Russia"];
+
     
     const formSubmit = async (data) => {    //data is the entire data of form 
 
@@ -46,6 +50,7 @@ function PostForm({post}){
         } else { 
                
             console.log(data)
+     
             
             const file = await appwriteService.uploadFile(data.image[0]);//to get imageID
             console.log("file uploaded",file)
@@ -89,8 +94,8 @@ function PostForm({post}){
 
     return (
         <div className="bg-slate-100 w-full px-8 py-16   ">
-            <form onSubmit={handleSubmit(formSubmit)} className="flex flex-col justify-center items-center mx-0 xsm:mx-4 sm:mx-12  lg:mx-40 xl:mx-60 border border-[#006494] rounded-lg overflow-hidden">
-                <h1 className="w-full  bg-[#006494] text-white font-semibold text-lg py-3 text-center">Create New Post</h1>
+            <form onSubmit={handleSubmit(formSubmit)} className="flex flex-col justify-center items-center mx-0 xsm:mx-4 sm:mx-12  lg:mx-40 xl:mx-60 border border-sky-400 rounded-lg overflow-hidden">
+                <h1 className="w-full  bg-sky-400 text-white font-semibold text-lg py-3 text-center">Create New Post</h1>
                 <div className=" bg-white  w-full py-8 px-6 md:px-12  lg:px-20   "> 
                     
                     <div className="flex flex-col">
@@ -106,45 +111,31 @@ function PostForm({post}){
                         />
 
                         <div className="flex md:flex-row flex-col md:justify-between   ">
-                                <select name="country" id="country" className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                                <Select 
+                                    label="Country"
+                                    arr={countryArr}  
+                                    className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
                                     {...register("country",{
                                         required:true
-                                    })}     
-                                >  
-                                    <option value=""  >Select Country</option>
-                                    <option value="India"  >India</option>
-                                    <option value="Japan">Japan</option>
-                                    <option value="America"  >America</option>
-                                    <option value="Nepal" >Nepal</option>
-                                </select>
-                               
-                                <select name="state" id="" className="w-full border py-2 pl-3 md:pl-2 md:pr-4  md:mx-2 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494] rounded-sm"
+                                    })} 
+                                />
+                                <Select 
+                                    label="State"
+                                    arr={stateArr}  
+                                    className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
                                     {...register("state",{
                                         required:true
                                     })}
-                                    
-                                >
-                                    <option value=""  >Select State</option>
-                                    <option value="India" >India</option>
-                                    <option value="Japan" >Japan</option>
-                                    <option value="America" >America</option>
-                                    <option value="Nepal" >Nepal</option>
-                                
-                                
-                                </select>
-
-                                <select name="place" id="" className="w-full border  py-2 pl-3 md:pl-2 md:pr-4 md:ml-2 my-2 text-[#00000051]  font-semibold focus:outline-none focus:border-[#006494] rounded-sm"
+                                />
+                                <Select 
+                                    label="Place"
+                                    arr={placeArr}  
+                                    className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
                                     {...register("place",{
                                         required:true
-                                    })}
-                                    
-                                >
-                                    <option value=""  >Select Place</option>
-                                    <option value="India"  >India</option>
-                                    <option value="Japan" >Japan</option>
-                                    <option value="America" >America</option>
-                                    <option value="Nepal" >Nepal</option>                          
-                                </select>
+                                    })} 
+                                />
+
                         </div>
 
                         <RTE control={control} defaultValue={getValues("content")}  />
@@ -157,7 +148,7 @@ function PostForm({post}){
                                 })}    
                             />
                             {post && (
-                                <div className="w-full mb-4">
+                                <div className="w-full mb-4 mr-6">
                                     <img
                                         src={ `${appwriteService.getFilePreview(post.featuredImage)}`}
                                         alt="img"
@@ -166,30 +157,28 @@ function PostForm({post}){
                                 </div>
                             )}
 
-                            <select className="pl-2 pr-6 my-2 border  md:ml-2 ml-auto mr-0  text-[#00000051]  font-semibold focus:outline-none focus:border-[#006494] rounded-sm" 
-                                name="status" id="status"
-                                
-                                {...register("status", { required: true })}
-                                
-                            >   
-                                <option value=""  >Select Status</option>
-                                <option value="active" >active</option>
-                                <option value="inactive" >inactive</option>
-                        
-                            </select>
+                           
+                            <Select 
+                                label="Status"
+                                arr={["Active","Inactive"]}  
+                                className="sm:w-44 w-full border py-2 pl-3 md:pl-2 md:pr-4 ml-6 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                                {...register("status",{
+                                    required:true
+                                })} 
+                            />
                         </div>
 
                         
 
-                        <hr className="border-t border-t-slate-200 " />
+                        <hr className="border-t border-t-slate-200 mt-6" />
                         <p className="text-[#00000054] text-sm">You can always edit this information from My Posts section.</p>
                         <div className="mt-12 mb-6 flex justify-evenly">
                             <InputButton 
                                 content="Cancel" 
-                                className="border border-[#006494] text-[#006494] bg-white px-6 py-2 rounded-sm text-lg font-semibold "
+                                className="border border-sky-400 text-sky-400 bg-white px-12 py-2 rounded-sm text-lg font-semibold "
                                 onClick={handleCancle}
                             />
-                            <InputButton type="submit" content="Save"  className="bg-[#006494] px-6 text-white py-2 rounded-sm text-lg font-semibold " />
+                            <InputButton type="submit" content="Save"  className="bg-sky-400 px-12 text-white py-2 rounded-sm text-lg font-semibold " />
                         </div>
                     </div>
                 </div>

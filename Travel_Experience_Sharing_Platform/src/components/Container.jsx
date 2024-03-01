@@ -12,7 +12,7 @@ function Container({children}){
 
  
     return  (
-        <div>
+        <div className="w-full bg-slate-50 ">
             {children}
         </div>
     )

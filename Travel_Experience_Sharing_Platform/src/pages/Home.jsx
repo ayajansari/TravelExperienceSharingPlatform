@@ -1,29 +1,114 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { FeatureCard,CommunityCard,TestimonialCard } from "../exports";
+import { Link, useParams } from "react-router-dom";
+import { FeatureCard,CommunityCard,TestimonialCard,PostCard,Select ,InputButton} from "../exports";
+import service from "../appwrite/config";
+import { useForm } from "react-hook-form";
 
 
-function Home(){
+function Home({
+    showMyPosts=false
+
+}){
     const authStatus=useSelector((state)=> state.auth.status)
     const authData=useSelector((state)=>state.auth.userData)
     const [posts,setPosts]=useState([])
+    const {register,handleSubmit} =useForm()
+    const countryArr=["India","Japan","China","Nepal","Russia"];
+    const stateArr=["India","Japan","China","Nepal","Russia"];
+    const placeArr=["India","Japan","China","Nepal","Russia"];
 
+    
     useEffect(()=>{
 
         
-        if(authStatus){
             //get all posts from db
-            
-        }
-        
-    })
+            if(showMyPosts ){
+                try {
+                    if(authData){
 
+                    
+                        service.getPosts(authData.$id).then((data)=>{
+                            setPosts(data.documents)
+                            console.log("myposts data received",data)
+                        })
+                    }
+                    
+                } catch (error) {
+                    console.log("error at myPosts:",error.message)
+                    throw error
+                }
+                
+            }else{
+                try {
+                    service.getAllPosts().then((data)=>{
+                        setPosts(data.documents);
+                        console.log("data received:",data)
+                    });
+                    
+                } catch (error) {
+                    console.log("error at getAllPosts:",error.message)
+                    throw error;
+                }
+
+            }
+            
+
+    },[authStatus]) //authstatus because it may happen that authStatus has not received user data it is taking
+    //time so landing page will be shown and after some time when authStatus gets values we want to rerun the useEffect 
+
+    const searchForm=async(data)=>{
+        console.log(data);
+        return 
+    }
     return authStatus? (
-        <div>
+        <div className=" mx-8 sm:mx-24 md:mx-20 lg:mx-28 xl:mx-36 mb-16  ">   
+            
+            <div  className="my-16">
+                <form onSubmit={handleSubmit(searchForm)} 
+                    className="flex  md:flex-row flex-col  justify-center w-full "    
+                >
+                    <Select 
+                        label="Country"
+                        arr={countryArr} 
+                        className=" md:w-full  border px-2  py-2  md:mr-1 my-1  text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                        {...register("country",{
+                            required:true
+                        })}    
+                    />
+                    <Select
+                        label="State"
+                        arr={stateArr} 
+                        className=" md:w-full border px-2 py-2  md:mx-1 my-1 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                        {...register("state",{
+                            required:true
+                        })} 
+                    />
+                    <Select
+                        label="Place"
+                        arr={placeArr} 
+                        className="md:w-full border px-2 py-2 md:mx-1 my-1  text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                        {...register("place",{
+                            required:true
+                        })}
+                     />
+                    <InputButton type="submit" content="Filter"  className="bg-sky-400 px-6 py-2  md:ml-1 my-1 text-white   rounded-sm  font-semibold text-lg w-full" />
+
+                </form>
+                
+            </div>
+            <div className="flex flex-wrap justify-center  w-full border  shadow-[1px_1px_10px_-1px_rgba(0,0,0,0.5)]  px-6 py-6 rounded-md">
+                {posts.map((post) => (
+                    <div key={post.$id} className='p-2 my-3 mx-auto sm:w-60 w-72    text-center  ' >
+                        <PostCard {...post} />
+                    </div>
+                    
+                ))}
+            </div>
             
         </div>
     ) : (
+        // is user is not logged-in show landing page
         <div className="">
 
             {/* main content */}
