@@ -4,9 +4,9 @@ function Logo(){
 
 
     return (
-        <div className="flex justify-between items-center  my-2 ">
-            <img src="/src/assets/paper-plane2.png" alt="" className="w-10 mt-1 " />
-            <p className="block ml-3 font-bold text-xl text-[#006494]">ShareExp</p>
+        <div className="text-center  ">
+            <img src="/src/assets/shareExplogo.png" alt="" className="w-36 " />
+            {/* <p className="block ml-3 font-bold text-xl text-sky-400">ShareExp</p> */}
         </div>
     )
 }

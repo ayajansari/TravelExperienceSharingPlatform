@@ -10,7 +10,7 @@ function InputButton({
  
     return (
         <button 
-            className={`   ${className}`}
+            className={className}
             type={type}
             {...props} 
            

@@ -19,11 +19,13 @@ function PostForm({post}){
             
         },
     });
+    
 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
-    
-    // console.log("user id:",userData)
+    const [error,setError]=useState("")
+
+
     const countryArr=["India","Japan","China","Nepal","Russia"];
     const stateArr=["India","Japan","China","Nepal","Russia"];
     const placeArr=["India","Japan","China","Nepal","Russia"];
@@ -31,26 +33,39 @@ function PostForm({post}){
     
     const formSubmit = async (data) => {    //data is the entire data of form 
 
+        console.log(data.content.length)
+        if(data.content.length>255){
+            setError("Length of post content should be less than 255 characters")
+            return 
+        }
+
         if (post) {     //edit post
-            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;    //upload the updated image
-            console.log("file uploaded",file)
-            if (file) {
-                appwriteService.deleteFile(post.featuredImage); //delete previous image
-            }
-            console.log("post id:",data)
-            const dbPost = await appwriteService.updatePost(post.$id, {
-                ...data,
-                featuredImage: file ? file.$id : undefined,
-            });
 
-            if (dbPost) {
+            try {
+                const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;    //upload the updated image
+                console.log("file uploaded",file)
+                if (file) {
+                    appwriteService.deleteFile(post.featuredImage); //delete previous image
+                }
+                console.log("post id:",data)
+                const dbPost = await appwriteService.updatePost(post.$id, {
+                    ...data,
+                    featuredImage: file ? file.$id : undefined,
+                });
 
-                navigate(`/post/${dbPost.$id}`);
+                if (dbPost) {
+
+                    navigate(`/post/${dbPost.$id}`);
+                }
+                
+            } catch (error) {
+                console.log(error.message)
+                throw error
             }
+            
         } else { 
                
-            console.log(data)
-     
+            
             
             const file = await appwriteService.uploadFile(data.image[0]);//to get imageID
             console.log("file uploaded",file)
@@ -101,6 +116,7 @@ function PostForm({post}){
                     <div className="flex flex-col">
                         <InputField 
                             type="type"
+                            
                             placeholder="Title of your Post"
                             onInput={(e)=> setValue("slug", slugTransform(e.target.value))} 
                             className=" py-2 px-4 my-2 border focus:outline-none focus:border-[#006494] rounded-sm"
@@ -140,7 +156,7 @@ function PostForm({post}){
 
                         <RTE control={control} defaultValue={getValues("content")}  />
                         
-                        <div className="flex ">
+                        <div className="flex mt-4">
                             <input type="file" name="postImage" id="" className="py-4 w-60  "
                                 accept="image/png, image/jpg, image/jpeg, image/gif"
                                 {...register("image",{
@@ -148,7 +164,7 @@ function PostForm({post}){
                                 })}    
                             />
                             {post && (
-                                <div className="w-full mb-4 mr-6">
+                                <div className="w-32 mb-4 mr-6">
                                     <img
                                         src={ `${appwriteService.getFilePreview(post.featuredImage)}`}
                                         alt="img"
@@ -158,29 +174,38 @@ function PostForm({post}){
                             )}
 
                            
-                            <Select 
+                            
+                        </div>
+                        <Select 
                                 label="Status"
                                 arr={["Active","Inactive"]}  
-                                className="sm:w-44 w-full border py-2 pl-3 md:pl-2 md:pr-4 ml-6 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                                className="w-full sm:w-40 border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
                                 {...register("status",{
                                     required:true
                                 })} 
-                            />
-                        </div>
+                        />
 
                         
 
                         <hr className="border-t border-t-slate-200 mt-6" />
                         <p className="text-[#00000054] text-sm">You can always edit this information from My Posts section.</p>
                         <div className="mt-12 mb-6 flex justify-evenly">
+                            
+                            <InputButton type="submit" content="Save"  className="bg-sky-400 px-12 text-white py-2 rounded-sm text-lg font-semibold " />
+
                             <InputButton 
                                 content="Cancel" 
-                                className="border border-sky-400 text-sky-400 bg-white px-12 py-2 rounded-sm text-lg font-semibold "
+                                className="border border-red-400 text-red-400 bg-white hover:bg-red-400 hover:text-white px-12 py-2 rounded-sm text-lg font-semibold "
                                 onClick={handleCancle}
                             />
-                            <InputButton type="submit" content="Save"  className="bg-sky-400 px-12 text-white py-2 rounded-sm text-lg font-semibold " />
+                            
                         </div>
                     </div>
+                    {error && (
+                        <div className="text-slate-400">
+                            {error}
+                        </div>
+                    )}
                 </div>
             </form>
         </div>

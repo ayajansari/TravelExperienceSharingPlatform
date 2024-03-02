@@ -55,14 +55,14 @@ function Header(){
 
                     {/* menu button */}
                     <div 
-                        className=" md:hidden inline-block my-2 border-2 border-[#006494]" 
+                        className=" md:hidden inline-block my-2 ]" 
                         onClick={()=>setshowMenu(!showMenu)}   
                     >
                         <img src="/src/assets/menu-bar.png" className="w-10" alt="" />
                     </div>
                     
                     {/* logo */}
-                    <div className="md:mr-auto md:ml-2  "  >
+                    <div className="md:mr-auto md:ml-2 mt-3 mb-2 "  >
                         <Link to="/"> <Logo/> </Link>
                     </div> 
 
@@ -74,7 +74,7 @@ function Header(){
                                     <li  key={item.slug} > 
                                         <NavLink to={`${item.slug}`} 
                                             className={ ({isActive})=> `px-4  py-2 mx-1 mb-2 mt-3  flex  font-semibold bg-white text-[#00000096]  rounded-sm  
-                                            ${isActive? "text-white bg-sky-400 ":null}` }
+                                            ${isActive? "bg-[#38bff815] text-sky-400 ":null}` }
                                         >
                                             {item.name}
                                         </NavLink>
@@ -86,16 +86,16 @@ function Header(){
                     </div>
 
                     {/* theme-change button and profile button  */}
-                    <div className="flex">
-                        <div className="px-2 py-2 mb-2 mt-3 rounded-sm mr-2  md:ml-1  md:mr-1 md:inline-block  hover:bg-slate-100 " >
+                    <div className="flex mt-3 mb-2">
+                        <div className="px-2 pt-2  rounded-sm mr-2  md:ml-1  md:mr-1 md:inline-block  hover:bg-[#38bff815] " >
                             <img src="/src/assets/night-mode.png" className="w-6" alt="" />
                         </div>
                         {authStatus && (
                             <div 
-                                className="px-4 py-2 mb-2 mt-3 rounded-sm  md:ml-2  md:mr-3 shadow-md  bg-[#006494] text-white " 
+                                className="px-4 py-2  rounded-sm  md:ml-2  md:mr-3 shadow-md  bg-sky-400 text-white " 
                                 onClick={()=>setShowProfile(!showProfile)}
                             >
-                                <span className="text-lg">{authData.name[0].toUpperCase()}</span>
+                                <span className="font-bold ">{authData.name[0].toUpperCase()}</span>
 
                                 {/* show profile section when click of profile icon */}
                                 {showProfile && (
