@@ -40,6 +40,8 @@ export default function Post() {
     };
 
     return post ? (
+
+
         <div className="py-8">
             <div className=" py-4 px-8 mx-6 sm:mx-20 md:mx-36 lg:mx-52 xl:mx-80   rounded-sm">
                 <div className="w-full text-center ">
