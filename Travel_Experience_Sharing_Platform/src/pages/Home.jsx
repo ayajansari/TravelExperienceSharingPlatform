@@ -97,7 +97,7 @@ function Home({
                 </form>
                 
             </div>
-            <div className="flex flex-wrap justify-center  w-full border  shadow-[0px_0px_70px_0px_rgba(0,0,0,0.15)]  px-6 py-6 rounded-md">
+            <div className="flex flex-wrap justify-center  w-full   shadow-[0px_0px_70px_0px_rgba(0,0,0,0.15)]  px-6 py-6 rounded-md">
                 {posts.map((post) => (
                     <div key={post.$id} className='p-2 my-3 mx-auto sm:w-60 w-72    text-center  ' >
                         <PostCard {...post} />

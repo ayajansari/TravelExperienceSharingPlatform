@@ -55,20 +55,20 @@ function Header(){
 
                     {/* menu button */}
                     <div 
-                        className=" md:hidden inline-block my-2 ]" 
+                        className=" md:hidden inline-block my-2 pt-3 " 
                         onClick={()=>setshowMenu(!showMenu)}   
                     >
-                        <img src="/src/assets/menu-bar.png" className="w-10" alt="" />
+                        <img src="/src/assets/menu-bar.png" className="w-6" alt="" />
                     </div>
                     
                     {/* logo */}
-                    <div className="md:mr-auto md:ml-2 mt-3 mb-2 "  >
+                    <div className=" md:ml-2 mt-3 mb-2 "  >
                         <Link to="/"> <Logo/> </Link>
                     </div> 
 
                     {/* nav-links */}
                     <div className="md:inline-block hidden">
-                        <ul className="flex ml-auto   ">
+                        <ul className="flex ml-auto md:mx-auto  ">
                             {navItems.map((item)=> item.active? (
                                 
                                     <li  key={item.slug} > 

@@ -6,7 +6,7 @@ function PostCard({ $id,title,featuredImage}){
  
     return (
         <Link to={`/post/${$id}`}>
-            <div className="w-full bg-white shadow-[1px_1px_10px_-1px_rgba(0,0,0,0.3)] border border-white hover:border-[#006494]
+            <div className="w-full bg-white    hover:bg-slate-100
              rounded-md overflow-hidden  p-2"> 
                 <div className="w-full justify-center mb-4">
                     <img src={`${service.getFilePreview(featuredImage)}`}  alt="img" className="w-full sm:h-24 h-40 rounded-md"/> 
