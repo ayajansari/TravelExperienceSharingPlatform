@@ -9,7 +9,7 @@ function FooterLink({
     return (
      
         <div className="p-1">
-            <a href="https://www.google.com" className="hover:text-white text-[#ffffff95]  ">{label}</a>
+            <a href="https://www.google.com" className="hover:text-white text-[#ffffffec]  ">{label}</a>
         </div>
        
     )

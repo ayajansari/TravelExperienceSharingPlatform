@@ -55,10 +55,10 @@ function Header(){
 
                     {/* menu button */}
                     <div 
-                        className=" md:hidden inline-block my-2 pt-3 " 
+                        className=" md:hidden inline-block my-2 pt-2 " 
                         onClick={()=>setshowMenu(!showMenu)}   
                     >
-                        <img src="/src/assets/menu-bar.png" className="w-6" alt="" />
+                        <img src="/src/assets/menu-bar.png" className="w-8 h-full" alt="" />
                     </div>
                     
                     {/* logo */}
@@ -73,8 +73,8 @@ function Header(){
                                 
                                     <li  key={item.slug} > 
                                         <NavLink to={`${item.slug}`} 
-                                            className={ ({isActive})=> `px-4  py-2 mx-1 mb-2 mt-3  flex  font-semibold bg-white text-[#00000096]  rounded-sm  
-                                            ${isActive? "bg-[#38bff815] text-sky-400 ":null}` }
+                                            className={ ({isActive})=> `px-2  py-1.5 mx-1 lg:mx-2 xl:mx-3 mb-2 mt-3 hover:text-[#2F87FE] border-2   border-white  flex  font-semibold bg-white text-[#00000096]  rounded-sm  
+                                            ${isActive? "bg-white text-[#2F87FE]  border-b-[#2F87FE]  ":null}` }
                                         >
                                             {item.name}
                                         </NavLink>
@@ -92,7 +92,7 @@ function Header(){
                         </div>
                         {authStatus && (
                             <div 
-                                className="px-4 py-2  rounded-sm  md:ml-2  md:mr-3 shadow-md  bg-sky-400 text-white " 
+                                className=" w-10 py-2 px-3.5 rounded-full  md:ml-2  md:mr-3 shadow-md  bg-[#2F87FE]  text-white " 
                                 onClick={()=>setShowProfile(!showProfile)}
                             >
                                 <span className="font-bold ">{authData.name[0].toUpperCase()}</span>
@@ -101,27 +101,27 @@ function Header(){
                                 {showProfile && (
                                     <div className="absolute top-14 right-4 w-72 flex flex-col mt-2  bg-white rounded-md  shadow-2xl" >
 
-                                        <div className="flex items-center px-4 py-3 border-b-2 border-b-[#d5dde1]">
-                                            <img src="/src/assets/user.png" className="pr-4 "  alt="" />
-                                            <span className="inline-block text-[#006494] text-md font-semibold">{authData.name}</span>
+                                        <div className="flex items-center px-4 py-3 border-b-2  border-b-[#d5dde1]">
+                                            <img src="/src/assets/user.png" className="pr-4  w-12"  alt="" />
+                                            <span className="inline-block text-[#2F87FE] text-lg font-semibold">{authData.name}</span>
                                         </div>
 
                                         <Link to={"/dashboard"}>
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
-                                                <span className=" w-full pl-4 py-1  ml-4 mt-3  hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold">My Dashboard </span>
+                                                <span className=" w-full pl-4 py-0.5  ml-4 mt-3  border-l-4 border-white hover:border-[#2F87FE] hover:text-[#2F87FE] ">My Dashboard </span>
                                             </div>
                                         </Link>
                                         <Link to={"/edit"}>
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
-                                                <span className="w-full pl-4 py-1 ml-4 mt-3 hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold">Edit Profile </span>
+                                                <span className="w-full pl-4 py-0.5 ml-4 mt-3 border-l-4 border-white hover:border-[#2F87FE] hover:text-[#2F87FE] ">Edit Profile </span>
                                             </div>
                                         </Link>
                                         <Link to={"/settings"}>
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
-                                                <span className="w-full  pl-4 py-1  ml-4 mt-3 mb-3 hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold">Account Settings</span>
+                                                <span className="w-full  pl-4 py-0.5  ml-4 mt-3 mb-3 border-l-4 border-white hover:border-[#2F87FE] hover:text-[#2F87FE] ">Account Settings</span>
                                             </div>
                                         </Link>
                                         
@@ -129,7 +129,7 @@ function Header(){
                                             <hr className="w-full border-b-2 border-b-[#d5dde1] " />
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/turn-off.png" className="w-6 pl-1 " alt="" /> */}
-                                                <Logout className="w-full pl-4 py-1 mx-4 my-3 hover:border-l-4 hover:border-[#006494] hover:text-[#006494] hover:font-semibold" />
+                                                <Logout className="w-full pl-4 py-0.5 mx-4 my-3 border-l-4 border-white hover:border-[#2F87FE] hover:text-[#2F87FE] " />
                                             </div>  
                                         </div>
                                         
@@ -164,8 +164,8 @@ function Header(){
                                     onClick={()=>setshowMenu(!showMenu)}     
                                 >   
                                     <NavLink to={`${item.slug}`} 
-                                                className={ ({isActive})=>`px-2 py-3 ml-2 mr-12 mt-2 flex font-semibold  text-black  hover:bg-[#00659410]    border-l-4 border-white  hover:border-sky-400 h-full
-                                                ${isActive? 'border-sky-400 bg-sky-50':null}`}
+                                                className={ ({isActive})=>`px-2 py-3 ml-2 mr-12 mt-2 flex font-semibold  text-black  hover:bg-blue-50    border-l-4 border-white  hover:border-[#2F87FE] h-full
+                                                ${isActive? 'border-[#2F87FE]  bg-blue-50':null}`}
                                     > 
                                         <img src={item.img} className=" w-5 h-5 mt-1 ml-4" alt="" />
                                         <p className="pl-4">{item.name}</p>    

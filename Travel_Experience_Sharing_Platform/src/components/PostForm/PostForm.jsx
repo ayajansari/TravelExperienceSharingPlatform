@@ -109,8 +109,8 @@ function PostForm({post}){
 
     return (
         <div className="bg-slate-100 w-full px-8 py-16   ">
-            <form onSubmit={handleSubmit(formSubmit)} className="flex flex-col justify-center items-center mx-0 xsm:mx-4 sm:mx-12  lg:mx-40 xl:mx-60 border border-sky-400 rounded-lg overflow-hidden">
-                <h1 className="w-full  bg-sky-400 text-white font-semibold text-lg py-3 text-center">Create New Post</h1>
+            <form onSubmit={handleSubmit(formSubmit)} className="flex flex-col justify-center items-center mx-0 xsm:mx-4 sm:mx-12  lg:mx-40 xl:mx-60 border  rounded-lg overflow-hidden">
+                <h1 className="w-full  bg-[#2f87fe] text-white font-semibold text-lg py-3 text-center">Create New Post</h1>
                 <div className=" bg-white  w-full py-8 px-6 md:px-12  lg:px-20   "> 
                     
                     <div className="flex flex-col">
@@ -157,33 +157,47 @@ function PostForm({post}){
                         <RTE control={control} defaultValue={getValues("content")}  />
                         
                         <div className="flex mt-4">
-                            <input type="file" name="postImage" id="" className="py-4 w-60  "
+                            {/* <input type="file" name="postImage" id="" className="py-4 w-60  "
                                 accept="image/png, image/jpg, image/jpeg, image/gif"
                                 {...register("image",{
                                     required:!post
-                                })}    
+                                })} 
+
+                            /> */}
+                            <input type="file" class="block w-full text-sm text-slate-500
+                                file:mr-4 file:py-2.5 file:px-4
+                                file:rounded-sm file:border-0
+                                 file:font-semibold
+                                file:bg-[#2f89fe11] file:text-[#2f87fe]
+                                hover:file:bg-[#2f89fe1f]"
+                                accept="image/png, image/jpg, image/jpeg, image/gif"
+                                {...register("image",{
+                                    required:!post
+                                })}
                             />
+                            
                             {post && (
                                 <div className="w-32 mb-4 mr-6">
                                     <img
                                         src={ `${appwriteService.getFilePreview(post.featuredImage)}`}
                                         alt="img"
-                                        className="rounded-lg"
+                                        className="rounded-lg "
                                     />
                                 </div>
                             )}
-
-                           
-                            
-                        </div>
-                        <Select 
+                            <Select 
                                 label="Status"
                                 arr={["Active","Inactive"]}  
-                                className="w-full sm:w-40 border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                                className="w-w-40 sm:w-60 md:w-80 border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2  text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
                                 {...register("status",{
                                     required:true
                                 })} 
                         />
+
+                           
+                            
+                        </div>
+                        
 
                         
 
@@ -191,7 +205,7 @@ function PostForm({post}){
                         <p className="text-[#00000054] text-sm">You can always edit this information from My Posts section.</p>
                         <div className="mt-12 mb-6 flex justify-evenly">
                             
-                            <InputButton type="submit" content="Save"  className="bg-sky-400 px-12 text-white py-2 rounded-sm text-lg font-semibold " />
+                            <InputButton type="submit" content="Save"  className="bg-[#2f87fe] px-12 text-white py-2 rounded-sm text-lg font-semibold " />
 
                             <InputButton 
                                 content="Cancel" 

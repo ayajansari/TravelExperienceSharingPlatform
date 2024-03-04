@@ -92,7 +92,7 @@ function Home({
                             required:true
                         })}
                      />
-                    <InputButton type="submit" content="Filter"  className="bg-sky-400 px-6 py-2  md:ml-1 my-1 text-white   rounded-sm  font-semibold text-lg w-full" />
+                    <InputButton type="submit" content="Filter"  className="bg-[#2F87FE] px-6 py-2  md:ml-1 my-1 text-white   rounded-sm  font-semibold text-lg w-full" />
 
                 </form>
                 
@@ -118,7 +118,7 @@ function Home({
                     <h3 className=" text-center text-lg mt-4 mx-3/4 text-[#ffffffbb]">Discover, share and connect with fellow travelers on our vibrant platform </h3>
                     <div className="flex justify-center mt-6 ">
                         <Link to="/signup">
-                            <div className={`w-24 px-3  py-2  text-lg  font-semibold  bg-[#006494] hover:bg-[#006594c3] text-center text-white  rounded-sm `}  > 
+                            <div className={`w-24 px-3  py-2  text-lg  font-semibold  bg-[#2F87FE] hover:bg-[#006594c3] text-center text-white  rounded-sm `}  > 
                                 Sign Up
                             </div>
                         </Link>
