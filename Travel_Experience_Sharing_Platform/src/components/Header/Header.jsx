@@ -73,8 +73,8 @@ function Header(){
                                 
                                     <li  key={item.slug} > 
                                         <NavLink to={`${item.slug}`} 
-                                            className={ ({isActive})=> `px-2  py-1.5 mx-1 lg:mx-2 xl:mx-3 mb-2 mt-3 hover:text-[#2F87FE] border-2   border-white  flex  font-semibold bg-white text-[#00000096]  rounded-sm  
-                                            ${isActive? "bg-white text-[#2F87FE]  border-b-[#2F87FE]  ":null}` }
+                                            className={ ({isActive})=> `px-2  py-1.5 mx-1 lg:mx-2 xl:mx-3 mb-2 mt-3 hover:text-[#2F87FE] border-b-2   border-white   flex  font-semibold bg-white text-[#00000096]  
+                                            ${isActive? "text-[#2F87FE]  border-b-[#2F87FE]":null}` }
                                         >
                                             {item.name}
                                         </NavLink>
@@ -87,12 +87,12 @@ function Header(){
 
                     {/* theme-change button and profile button  */}
                     <div className="flex mt-3 mb-2">
-                        <div className="px-2 pt-2  rounded-sm mr-2  md:ml-1  md:mr-1 md:inline-block  hover:bg-[#38bff815] " >
+                        <div className="px-2 pt-2  rounded-full  mr-2  md:ml-1  md:mr-1 md:inline-block  hover:bg-[#38bff82c] " >
                             <img src="/src/assets/night-mode.png" className="w-6" alt="" />
                         </div>
                         {authStatus && (
                             <div 
-                                className=" w-10 py-2 px-3.5 rounded-full  md:ml-2  md:mr-3 shadow-md  bg-[#2F87FE]  text-white " 
+                                className=" w-10 py-2 px-3.5 rounded-full  md:ml-2  md:mr-3 shadow-md  bg-[#2F87FE] hover:bg-[#0570fc]  text-white " 
                                 onClick={()=>setShowProfile(!showProfile)}
                             >
                                 <span className="font-bold ">{authData.name[0].toUpperCase()}</span>
@@ -164,8 +164,8 @@ function Header(){
                                     onClick={()=>setshowMenu(!showMenu)}     
                                 >   
                                     <NavLink to={`${item.slug}`} 
-                                                className={ ({isActive})=>`px-2 py-3 ml-2 mr-12 mt-2 flex font-semibold  text-black  hover:bg-blue-50    border-l-4 border-white  hover:border-[#2F87FE] h-full
-                                                ${isActive? 'border-[#2F87FE]  bg-blue-50':null}`}
+                                                className={ ({isActive})=>`px-2 py-3 ml-2 mr-12 mt-2 flex font-semibold  text-black  hover:bg-blue-50    border-l-4 border-white  hover:border-[#2F87FE] 
+                                                ${isActive? 'border-l-blue-500  bg-blue-50':null}`}
                                     > 
                                         <img src={item.img} className=" w-5 h-5 mt-1 ml-4" alt="" />
                                         <p className="pl-4">{item.name}</p>    

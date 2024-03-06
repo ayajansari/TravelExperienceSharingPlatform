@@ -4,18 +4,20 @@ import {get, useForm} from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 import appwriteService from "../../appwrite/config";
 import { useSelector } from "react-redux";
-import { useCallback } from "react";
+import {useEffect, useCallback } from "react";
+import variables from "../../appwrite/variables";
+
 function PostForm({post}){
 
     const { register,control, handleSubmit,  setValue,  getValues } = useForm({
         defaultValues: {    
             title: post?.title || "",
-            country:post?.country || "India",
-            state:post?.state || "China",
-            place:post?.place || "Japan",
+            country:post?.country || "",
+            state:post?.state || "",
+            city:post?.city || "",
             slug: post?.$id || "",     
             content: post?.content || "",
-            status:post?.status || "Active"
+            status:post?.status || ""
             
         },
     });
@@ -25,10 +27,78 @@ function PostForm({post}){
     const userData = useSelector((state) => state.auth.userData);
     const [error,setError]=useState("")
 
+    const [countries,setCountries]=useState()
+    const [states,setStates]=useState()
+    const [cities,setCities]=useState()
 
-    const countryArr=["India","Japan","China","Nepal","Russia"];
-    const stateArr=["India","Japan","China","Nepal","Russia"];
-    const placeArr=["India","Japan","China","Nepal","Russia"];
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch("https://www.universal-tutorial.com/api/countries/", {
+              headers: {
+                "Authorization": `Bearer ${variables.universalTutorialAuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
+                "Accept": "application/json"
+              }
+            });
+            if (response.ok) {
+              const data = await response.json();
+              setCountries(data);
+              console.log("countries:",data)
+            } else {
+              console.error('Failed to fetch data');
+            }
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+        fetchData()
+    },[])
+
+    const handleCountry=async(selectedCountry)=>{
+        // console.log(selectedCountry)
+
+        try {
+            const response = await fetch(`https://www.universal-tutorial.com/api/states/${selectedCountry}`, {
+              headers: {
+                "Authorization": `Bearer ${variables.universalTutorialAuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
+                "Accept": "application/json"
+              }
+            });
+
+            if (response.ok) {
+              const data = await response.json();
+              setStates(data);
+              console.log("state:",data)
+            } else {
+              console.error('Failed to fetch data');
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    const handleState=async(selectedState)=>{
+        console.log(selectedState)
+        try {
+            const response = await fetch(`https://www.universal-tutorial.com/api/cities/${selectedState}`, {
+              headers: {
+                "Authorization": `Bearer ${variables.universalTutorialAuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
+                "Accept": "application/json"
+              }
+            });
+
+            if (response.ok) {
+              const data = await response.json();
+              setCities(data);
+              console.log("cities:",data)
+            } else {
+              console.error('Failed to fetch data');
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
 
     
     const formSubmit = async (data) => {    //data is the entire data of form 
@@ -80,6 +150,7 @@ function PostForm({post}){
             }
         }
     };
+
     const handleCancle=()=>{
         navigate("/")
     }
@@ -127,30 +198,36 @@ function PostForm({post}){
                         />
 
                         <div className="flex md:flex-row flex-col md:justify-between   ">
-                                <Select 
-                                    label="Country"
-                                    arr={countryArr}  
-                                    className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
-                                    {...register("country",{
-                                        required:true
-                                    })} 
-                                />
-                                <Select 
-                                    label="State"
-                                    arr={stateArr}  
-                                    className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
-                                    {...register("state",{
-                                        required:true
-                                    })}
-                                />
-                                <Select 
-                                    label="Place"
-                                    arr={placeArr}  
-                                    className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
-                                    {...register("place",{
-                                        required:true
-                                    })} 
-                                />
+                            
+                            <Select 
+                                name="Country"
+                                objKey="country_name"
+                                arr={countries}  
+                                onchange={(e)=> handleCountry(e.target.value)}
+                                className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                                {...register("country",{
+                                    required:true
+                                })} 
+                            />
+                            <Select 
+                                name="State"
+                                objKey="state_name"
+                                arr={states}  
+                                onchange={(e)=> handleState(e.target.value)}
+                                className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                                {...register("state",{
+                                    required:true
+                                })}
+                            />
+                            <Select 
+                                name="City"
+                                arr={cities}  
+                                objKey="city_name"
+                                className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                                {...register("city",{
+                                    required:true
+                                })} 
+                            />
 
                         </div>
 
@@ -186,13 +263,14 @@ function PostForm({post}){
                                 </div>
                             )}
                             <Select 
-                                label="Status"
-                                arr={["Active","Inactive"]}  
+                                name="Status"
+                                objKey="status_type"
+                                arr={[{"status_type":"Active"},{"status_type":"Inactive"}]}  
                                 className="w-w-40 sm:w-60 md:w-80 border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2  text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
                                 {...register("status",{
                                     required:true
                                 })} 
-                        />
+                            />
 
                            
                             
@@ -205,7 +283,7 @@ function PostForm({post}){
                         <p className="text-[#00000054] text-sm">You can always edit this information from My Posts section.</p>
                         <div className="mt-12 mb-6 flex justify-evenly">
                             
-                            <InputButton type="submit" content="Save"  className="bg-[#2f87fe] px-12 text-white py-2 rounded-sm text-lg font-semibold " />
+                            <InputButton type="submit" content="Save"  className="bg-[#2f87fe] hover:bg-[#0570fc] px-12 text-white py-2 rounded-sm text-lg font-semibold " />
 
                             <InputButton 
                                 content="Cancel" 

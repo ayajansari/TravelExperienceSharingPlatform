@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { FeatureCard,CommunityCard,TestimonialCard,PostCard,Select ,InputButton} from "../exports";
 import service from "../appwrite/config";
-import { useForm } from "react-hook-form";
-
+import { get, useForm } from "react-hook-form";
+import variables from "../appwrite/variables";
 
 function Home({
     showMyPosts=false
@@ -13,15 +13,85 @@ function Home({
     const authStatus=useSelector((state)=> state.auth.status)
     const authData=useSelector((state)=>state.auth.userData)
     const [posts,setPosts]=useState([])
-    const {register,handleSubmit} =useForm()
-    const countryArr=["India","Japan","China","Nepal","Russia"];
-    const stateArr=["India","Japan","China","Nepal","Russia"];
-    const placeArr=["India","Japan","China","Nepal","Russia"];
+    const {register,handleSubmit,getValues,setValue} =useForm({defaultValues:{
+        country:""
+    }})
+    const [countries,setCountries]=useState()
+    const [states,setStates]=useState()
+    const [cities,setCities]=useState()
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch("https://www.universal-tutorial.com/api/countries/", {
+              headers: {
+                "Authorization": `Bearer ${variables.universalTutorialAuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
+                "Accept": "application/json"
+              }
+            });
+            if (response.ok) {
+              const data = await response.json();
+              setCountries(data);
+              console.log("countries:",data)
+            } else {
+              console.error('Failed to fetch data');
+            }
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+        fetchData()
+    },[])
+
+    const handleCountry=async(selectedCountry)=>{
+        // console.log(selectedCountry)
+
+        try {
+            const response = await fetch(`https://www.universal-tutorial.com/api/states/${selectedCountry}`, {
+              headers: {
+                "Authorization": `Bearer ${variables.universalTutorialAuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
+                "Accept": "application/json"
+              }
+            });
+
+            if (response.ok) {
+              const data = await response.json();
+              setStates(data);
+              console.log("state:",data)
+            } else {
+              console.error('Failed to fetch data');
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    const handleState=async(selectedState)=>{
+        console.log(selectedState)
+        try {
+            const response = await fetch(`https://www.universal-tutorial.com/api/cities/${selectedState}`, {
+              headers: {
+                "Authorization": `Bearer ${variables.universalTutorialAuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
+                "Accept": "application/json"
+              }
+            });
+
+            if (response.ok) {
+              const data = await response.json();
+              setCities(data);
+              console.log("cities:",data)
+            } else {
+              console.error('Failed to fetch data');
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
 
     
     useEffect(()=>{
 
-        
             //get all posts from db
             if(showMyPosts ){
                 try {
@@ -57,6 +127,8 @@ function Home({
     },[authStatus]) //authstatus because it may happen that authStatus has not received user data it is taking
     //time so landing page will be shown and after some time when authStatus gets values we want to rerun the useEffect 
 
+    
+
     const searchForm=async(data)=>{
         console.log(data);
         return 
@@ -69,30 +141,37 @@ function Home({
                     className="flex  md:flex-row flex-col  justify-center w-full "    
                 >
                     <Select 
-                        label="Country"
-                        arr={countryArr} 
+                        name="Country"
+                        objKey="country_name"       //this is same of key in countries array
+                        arr={countries} 
+                        onchange={(e)=> handleCountry(e.target.value)}
                         className=" md:w-full  border px-2  py-2  md:mr-1 my-1  text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
                         {...register("country",{
                             required:true
                         })}    
                     />
-                    <Select
-                        label="State"
-                        arr={stateArr} 
+                     <Select
+                        name="State"
+                        objKey="state_name"       //this is same of key in states array
+                        arr={states} 
+                        onchange={(e)=> handleState(e.target.value)}
                         className=" md:w-full border px-2 py-2  md:mx-1 my-1 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
                         {...register("state",{
                             required:true
                         })} 
                     />
+                    
                     <Select
-                        label="Place"
-                        arr={placeArr} 
+                        name="City"
+                        objKey="city_name"
+                        arr={cities} 
+                        
                         className="md:w-full border px-2 py-2 md:mx-1 my-1  text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
-                        {...register("place",{
+                        {...register("city",{
                             required:true
-                        })}
-                     />
-                    <InputButton type="submit" content="Filter"  className="bg-[#2F87FE] px-6 py-2  md:ml-1 my-1 text-white   rounded-sm  font-semibold text-lg w-full" />
+                         })}
+                    />
+                    <InputButton type="submit" content="Filter"  className="bg-[#2F87FE] hover:bg-[#0570fc] px-6 py-2  md:ml-1 my-1 text-white   rounded-sm  font-semibold text-lg w-full" />
 
                 </form>
                 

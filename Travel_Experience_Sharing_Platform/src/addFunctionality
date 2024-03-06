@@ -8,3 +8,4 @@
 #use nodejs+expressjs in backend use postman for api 
 #create a table for newsletters
 #create selectComponent and replace select tags from postform
+#create div in post/:slug where show author name date of publishement of post

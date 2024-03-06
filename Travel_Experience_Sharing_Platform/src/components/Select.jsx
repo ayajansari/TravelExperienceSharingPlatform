@@ -1,25 +1,36 @@
 import React from 'react';
  
 const Select = React.forwardRef(function Select({
-    label,
+    name,
+    objKey,
     arr,
+    onchange,
     className="",
     ...props
 },ref){
 
-    // console.log(arr)
+
     return (
         <select 
-            name={label} 
-            id={label}
+            name={name} 
+            id={name}
             className={className}
             {...props}
             ref={ref}
+            onChange={onchange}
             
         >  
-            <option value=""  >Select {label}</option>
-            {arr.map((val,index)=>(
-                <option value={val} key={index}>{val}</option>
+            <option value="" className=' text-black '  >Select {name}</option>
+            {arr && arr.map((val,index)=>(
+                <option  
+                    value={val[objKey]} 
+                    key={index}
+                    className=' text-black '
+
+
+                >
+                    {val[objKey]}
+                </option>
                 
             ))}
             
