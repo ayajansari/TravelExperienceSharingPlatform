@@ -106,19 +106,19 @@ function Header(){
                                             <span className="inline-block text-[#2F87FE] text-lg font-semibold">{authData.name}</span>
                                         </div>
 
-                                        <Link to={"/dashboard"}>
+                                        <Link to={"/user/dashboard"}>
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
                                                 <span className=" w-full pl-4 py-0.5  ml-4 mt-3  border-l-4 border-white hover:border-[#2F87FE] hover:text-[#2F87FE] ">My Dashboard </span>
                                             </div>
                                         </Link>
-                                        <Link to={"/edit"}>
+                                        <Link to={"/user/edit"}>
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
                                                 <span className="w-full pl-4 py-0.5 ml-4 mt-3 border-l-4 border-white hover:border-[#2F87FE] hover:text-[#2F87FE] ">Edit Profile </span>
                                             </div>
                                         </Link>
-                                        <Link to={"/settings"}>
+                                        <Link to={"/user/settings"}>
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
                                                 <span className="w-full  pl-4 py-0.5  ml-4 mt-3 mb-3 border-l-4 border-white hover:border-[#2F87FE] hover:text-[#2F87FE] ">Account Settings</span>
