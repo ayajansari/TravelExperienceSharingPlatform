@@ -55,9 +55,9 @@ export default function Post() {
                         className="rounded-sm w-full h-60 sm:h-80 lg:h-96" 
                     />
                 </div>
-                
+
                 <div className="my-6  text-md  text-[#000000c9] ">
-                    {parse(post.content)}
+                    {parse(String(post.content))}
 
                 </div>
                 {isAuthor && (
@@ -65,14 +65,12 @@ export default function Post() {
                     <div className="mt-12 mb-6 flex justify-evenly">
                         <Link to={`/edit-post/${post.$id}`}>
                             
-                            <InputButton  content="Edit"  className="bg-sky-400 px-12 text-white py-2 rounded-sm text-lg font-semibold " />
+                            <InputButton  content="Edit"  className="bg-[#2F87FE] hover:bg-[#0570fc] px-12 text-white py-2 rounded-sm text-lg font-semibold " />
                         </Link>
-                        <InputButton className=" border border-red-400 text-red-400 bg-white hover:text-white hover:bg-red-400 px-12 py-2 rounded-sm text-lg font-semibold" 
-                                    content="Delete" 
-                                    onClick={deletePost}
+                        <InputButton className=" border border-red-600 text-red-600 bg-white hover:text-white hover:bg-red-600 px-8 py-2 rounded-sm text-lg font-semibold" 
+                                content="Delete" 
+                                onClick={deletePost}
                         />
-
-                    
                     </div>
                 )}
                 

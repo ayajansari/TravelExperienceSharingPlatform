@@ -15,13 +15,13 @@ class Authentication{
     }
     
     async signup({name,email,password}){
-        console.log("data received in signup page")
+        // console.log("data received in signup page")
         try{
             
             const userSignedUp=await this.account.create(ID.unique(),email,password,name);
             
             if(userSignedUp){
-                console.log("signup successfull")   
+                // console.log("signup successfull")   
                 return this.login({email,password});
             }
 
@@ -68,3 +68,39 @@ class Authentication{
 }
 const authService=new Authentication()
 export default authService;
+
+export const universalTutorialAuthToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJzaGFyZXRyYXZlbGV4cDIwMjRAZ21haWwuY29tIiwiYXBpX3Rva2VuIjoicnNUenYtT0l6eXJ2ODdVc3o3djBwTEtoa1g1WVlmcGFMWGp6VUxkM3BBU19TQ1VkcjdDaFBBVzVmVThOUEdBTVdYQSJ9LCJleHAiOjE3MDk5MTkzMjN9.1Wd-bVgjp5YGLtnAyfLWhUqCZiI-nduT2y7EmAJzvzU"
+setInterval(() => {
+    // console.log("fetching")
+    const fetchApi=async()=>{
+
+    
+        try {
+            const response = await fetch("https://www.universal-tutorial.com/api/getaccesstoken", {
+            headers: {
+                
+                "Accept": "application/json",
+                "api-token":variables.universalTutorialApiToken,
+                "user-email":variables.userEmail,
+
+            }
+            });
+            if (response.ok) {
+            const data = await response.json();
+            console.log(data.auth_token)
+            universalTutorialAuthToken=data.auth_token;
+
+            } else {
+            
+            setError('API authToken is expired. ')
+            }
+        } 
+        catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+    fetchApi()
+    
+
+},12*60*60*1000);
+

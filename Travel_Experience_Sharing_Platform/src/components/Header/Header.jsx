@@ -87,12 +87,12 @@ function Header(){
 
                     {/* theme-change button and profile button  */}
                     <div className="flex mt-3 mb-2">
-                        <div className="px-2 pt-2  rounded-full  mr-2  md:ml-1  md:mr-1 md:inline-block  hover:bg-[#38bff82c] " >
+                        <div className="px-2 pt-2  rounded-full  mr-2  md:ml-1  md:mr-1 md:inline-block  hover:bg-[#F5F5F5] hover:cursor-pointer " >
                             <img src="/src/assets/night-mode.png" className="w-6" alt="" />
                         </div>
                         {authStatus && (
                             <div 
-                                className=" w-10 py-2 px-3.5 rounded-full  md:ml-2  md:mr-3 shadow-md  bg-[#2F87FE] hover:bg-[#0570fc]  text-white " 
+                                className=" w-10 py-2 px-3.5 rounded-full  md:ml-2  md:mr-3 shadow-md  bg-[#2F87FE] hover:bg-[#0570fc]  text-white hover:cursor-pointer " 
                                 onClick={()=>setShowProfile(!showProfile)}
                             >
                                 <span className="font-bold ">{authData.name[0].toUpperCase()}</span>

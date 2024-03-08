@@ -4,23 +4,27 @@ const Select = React.forwardRef(function Select({
     name,
     objKey,
     arr,
+    value,
     onchange,
     className="",
     ...props
 },ref){
 
 
+
     return (
+
         <select 
             name={name} 
             id={name}
+            value={value}
             className={className}
             {...props}
             ref={ref}
             onChange={onchange}
             
         >  
-            <option value="" className=' text-black '  >Select {name}</option>
+            <option value=""  className=' text-black '  >Select {name}</option>
             {arr && arr.map((val,index)=>(
                 <option  
                     value={val[objKey]} 

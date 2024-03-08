@@ -6,15 +6,16 @@ import appwriteService from "../../appwrite/config";
 import { useSelector } from "react-redux";
 import {useEffect, useCallback } from "react";
 import variables from "../../appwrite/variables";
+import { universalTutorialAuthToken as AuthToken } from "../../appwrite/auth";
 
 function PostForm({post}){
 
     const { register,control, handleSubmit,  setValue,  getValues } = useForm({
         defaultValues: {    
             title: post?.title || "",
-            country:post?.country || "",
-            state:post?.state || "",
-            city:post?.city || "",
+            country:"",
+            state: "",  //take empty because state,city,country are dependent
+            city:"",
             slug: post?.$id || "",     
             content: post?.content || "",
             status:post?.status || ""
@@ -27,9 +28,9 @@ function PostForm({post}){
     const userData = useSelector((state) => state.auth.userData);
     const [error,setError]=useState("")
 
-    const [countries,setCountries]=useState()
-    const [states,setStates]=useState()
-    const [cities,setCities]=useState()
+    const [countries,setCountries]=useState([])
+    const [states,setStates]=useState([])
+    const [cities,setCities]=useState([])
 
 
     useEffect(() => {
@@ -37,14 +38,14 @@ function PostForm({post}){
           try {
             const response = await fetch("https://www.universal-tutorial.com/api/countries/", {
               headers: {
-                "Authorization": `Bearer ${variables.universalTutorialAuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
+                "Authorization": `Bearer ${AuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
                 "Accept": "application/json"
               }
             });
             if (response.ok) {
               const data = await response.json();
               setCountries(data);
-              console.log("countries:",data)
+            //   console.log("countries:",data)
             } else {
               console.error('Failed to fetch data');
             }
@@ -57,11 +58,12 @@ function PostForm({post}){
 
     const handleCountry=async(selectedCountry)=>{
         // console.log(selectedCountry)
+        
 
         try {
             const response = await fetch(`https://www.universal-tutorial.com/api/states/${selectedCountry}`, {
               headers: {
-                "Authorization": `Bearer ${variables.universalTutorialAuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
+                "Authorization": `Bearer ${AuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
                 "Accept": "application/json"
               }
             });
@@ -69,7 +71,7 @@ function PostForm({post}){
             if (response.ok) {
               const data = await response.json();
               setStates(data);
-              console.log("state:",data)
+            //   console.log("state:",data)
             } else {
               console.error('Failed to fetch data');
             }
@@ -79,11 +81,12 @@ function PostForm({post}){
     }
 
     const handleState=async(selectedState)=>{
-        console.log(selectedState)
+        // console.log(selectedState)
+        
         try {
             const response = await fetch(`https://www.universal-tutorial.com/api/cities/${selectedState}`, {
               headers: {
-                "Authorization": `Bearer ${variables.universalTutorialAuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
+                "Authorization": `Bearer ${AuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
                 "Accept": "application/json"
               }
             });
@@ -91,7 +94,7 @@ function PostForm({post}){
             if (response.ok) {
               const data = await response.json();
               setCities(data);
-              console.log("cities:",data)
+            //   console.log("cities:",data)
             } else {
               console.error('Failed to fetch data');
             }
@@ -100,12 +103,11 @@ function PostForm({post}){
         }
     }
 
-    
     const formSubmit = async (data) => {    //data is the entire data of form 
 
-        console.log(data.content.length)
-        if(data.content.length>255){
-            setError("Length of post content should be less than 255 characters")
+        // console.log(data.content.length)
+        if(data.content.length>1000){
+            setError("Length of post content should be less than 1000 characters")
             return 
         }
 
@@ -134,6 +136,8 @@ function PostForm({post}){
             }
             
         } else { 
+               //add post
+               console.log(data);
                
             
             
@@ -181,7 +185,11 @@ function PostForm({post}){
     return (
         <div className="bg-slate-100 w-full px-8 py-16   ">
             <form onSubmit={handleSubmit(formSubmit)} className="flex flex-col justify-center items-center mx-0 xsm:mx-4 sm:mx-12  lg:mx-40 xl:mx-60 border  rounded-lg overflow-hidden">
-                <h1 className="w-full  bg-[#2f87fe] text-white font-semibold text-lg py-3 text-center">Create New Post</h1>
+                {post ? (
+                    <h1 className="w-full  bg-[#2f87fe] text-white font-semibold text-lg py-3 text-center">Edit your Post</h1>) : 
+                    <h1 className="w-full  bg-[#2f87fe] text-white font-semibold text-lg py-3 text-center">Create New Post</h1>
+                }
+
                 <div className=" bg-white  w-full py-8 px-6 md:px-12  lg:px-20   "> 
                     
                     <div className="flex flex-col">
@@ -201,10 +209,11 @@ function PostForm({post}){
                             
                             <Select 
                                 name="Country"
-                                objKey="country_name"
-                                arr={countries}  
+                                objKey="country_name"                             
+                                arr={countries} 
+                                
                                 onchange={(e)=> handleCountry(e.target.value)}
-                                className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                                className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2 my-2 text-[#00000096] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
                                 {...register("country",{
                                     required:true
                                 })} 
@@ -212,18 +221,19 @@ function PostForm({post}){
                             <Select 
                                 name="State"
                                 objKey="state_name"
-                                arr={states}  
+                                arr={states} 
                                 onchange={(e)=> handleState(e.target.value)}
-                                className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                                className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2 my-2 text-[#00000096] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
                                 {...register("state",{
                                     required:true
                                 })}
                             />
                             <Select 
-                                name="City"
-                                arr={cities}  
+                                name="City"  
                                 objKey="city_name"
-                                className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 my-2 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                                arr={cities}
+                                onchange={(e)=> setValue('city',e.target.value)}
+                                className="md:w-full border py-2 pl-3 md:pl-2 md:pr-4 my-2 text-[#00000096] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
                                 {...register("city",{
                                     required:true
                                 })} 
@@ -233,7 +243,7 @@ function PostForm({post}){
 
                         <RTE control={control} defaultValue={getValues("content")}  />
                         
-                        <div className="flex mt-4">
+                        <div className="flex flex-col mt-4">
                             {/* <input type="file" name="postImage" id="" className="py-4 w-60  "
                                 accept="image/png, image/jpg, image/jpeg, image/gif"
                                 {...register("image",{
@@ -241,32 +251,36 @@ function PostForm({post}){
                                 })} 
 
                             /> */}
-                            <input type="file" class="block w-full text-sm text-slate-500
-                                file:mr-4 file:py-2.5 file:px-4
-                                file:rounded-sm file:border-0
-                                 file:font-semibold
-                                file:bg-[#2f89fe11] file:text-[#2f87fe]
-                                hover:file:bg-[#2f89fe1f]"
-                                accept="image/png, image/jpg, image/jpeg, image/gif"
-                                {...register("image",{
-                                    required:!post
-                                })}
-                            />
-                            
-                            {post && (
-                                <div className="w-32 mb-4 mr-6">
-                                    <img
-                                        src={ `${appwriteService.getFilePreview(post.featuredImage)}`}
-                                        alt="img"
-                                        className="rounded-lg "
-                                    />
-                                </div>
-                            )}
+
+                            <div className="flex items-center flex-nowrap ">
+                                <input type="file" className="inline-block  file:hover:cursor-pointer text-sm text-slate-500
+                                    file:mr-4 file:py-2.5 file:px-4
+                                    file:rounded-sm file:border-0
+                                    file:font-semibold
+                                    file:bg-[#2f89fe11] file:text-[#2f87fe]
+                                    hover:file:bg-[#2f89fe1f]"
+                                    accept="image/png, image/jpg, image/jpeg, image/gif"
+                                    {...register("image",{
+                                        required:!post
+                                    })}
+                                />
+                                
+                                {post && (
+                                    <div className="w-24 mb-4 mr-auto pt-4">
+                                        <img
+                                            src={ `${appwriteService.getFilePreview(post.featuredImage)}`}
+                                            alt="img"
+                                            className="rounded-lg "
+                                        />
+                                    </div>
+                                )}
+                            </div>
                             <Select 
                                 name="Status"
                                 objKey="status_type"
+                                onchange={(e)=> setValue('status',e.target.value)}
                                 arr={[{"status_type":"Active"},{"status_type":"Inactive"}]}  
-                                className="w-w-40 sm:w-60 md:w-80 border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2  text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                                className="w-full md:w-40  border py-2 pl-3 md:pl-2 md:pr-4 md:mr-2  text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
                                 {...register("status",{
                                     required:true
                                 })} 
@@ -287,7 +301,7 @@ function PostForm({post}){
 
                             <InputButton 
                                 content="Cancel" 
-                                className="border border-red-400 text-red-400 bg-white hover:bg-red-400 hover:text-white px-12 py-2 rounded-sm text-lg font-semibold "
+                                className="border border-red-600 text-red-600 bg-white hover:bg-red-600 hover:text-white px-12 py-2 rounded-sm text-lg font-semibold "
                                 onClick={handleCancle}
                             />
                             

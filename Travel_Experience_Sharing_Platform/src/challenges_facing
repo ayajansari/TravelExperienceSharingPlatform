@@ -1,0 +1,6 @@
+ch1->our selectComponent is in another file and we are using it in home.jsx
+so if any change occurs in child select field then we were not getting that change in parent file.
+sol-> we created handleCountry,state, functions and passed it to select.jsx as onchange={handleCountry} and in select.jsx we added onChange={onchange} now our functions are passed to child component are changes are reflecting 
+
+ch2->api token  (state,city,country) is getting expired after 24 hours
+sol->in auth.js create variable for storing api token and added setInterval to call function (which create new api token) after every 12 hr.  

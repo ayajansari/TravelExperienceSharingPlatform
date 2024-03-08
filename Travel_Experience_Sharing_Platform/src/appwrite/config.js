@@ -16,7 +16,7 @@ export class Service{
     }
     
     //createDocument
-    async createPost({title,slug,content,featuredImage,status,userId}){
+    async createPost({title,country,state,city,slug,content,featuredImage,status,userId}){
 
         try{
             return await this.databases.createDocument(
@@ -28,7 +28,10 @@ export class Service{
                     content,
                     featuredImage,
                     status,
-                    userId
+                    userId,
+                    country,
+                    state,
+                    city
                 }
             )
         }
@@ -38,7 +41,7 @@ export class Service{
     }
 
     //updateDocument
-    async updatePost(slug,{title,content,featuredImage,status}){
+    async updatePost(slug,{title,content,featuredImage,status,country,state,city}){
         try{
             return await this.databases.updateDocument(
                 variables.myDatabaseId,
@@ -48,7 +51,10 @@ export class Service{
                     title,
                     content,
                     featuredImage,
-                    status
+                    status,
+                    country,
+                    state,
+                    city
                 }
             )     
         }
@@ -93,7 +99,7 @@ export class Service{
                 variables.myDatabaseId,
                 variables.myCollectionId,
                 [
-                    Query.equal('userId',userId)  //show only those posts which are active now and not deactivated by auther
+                    Query.equal('userId',userId)  
                 ]
             )
         }
@@ -115,6 +121,57 @@ export class Service{
         catch(error){
             console.log("appwrite service :: getAllPosts :: error",error)
             
+        }
+    }
+    
+    //getPosts according to filter
+    async getPostsFilter({country,state,city}){
+
+        try{
+            if(city){
+                return await this.databases.listDocuments(
+                    variables.myDatabaseId,
+                    variables.myCollectionId,
+                    [
+                        Query.equal( "city",city),
+                    ],
+                    100,
+                    0
+                )
+                
+            }
+            else if(state){
+
+                return await this.databases.listDocuments(
+                    variables.myDatabaseId,
+                    variables.myCollectionId,
+                    [
+                        Query.equal( "state",state),
+                    ],
+                    100,
+                    0
+                )
+
+            }
+            else {
+
+            
+                return await this.databases.listDocuments(
+                    variables.myDatabaseId,
+                    variables.myCollectionId,
+                    [
+                        Query.equal( "country",country)
+                    ],
+                    100,    //limit->100 means that the query will retrieve up to 100 documents at a time.
+                    0   //offset: This parameter specifies the offset from which to start retrieving documents.
+                    // For example, if you have already retrieved the first 100 documents and want to fetch 
+                    //the next set of documents, you would set offset to 100 to start from the 101st document.
+                )
+            }
+
+        }catch(error){
+            console.log("error while retrieving filtered documents:",error.message)
+            throw error
         }
     }
 

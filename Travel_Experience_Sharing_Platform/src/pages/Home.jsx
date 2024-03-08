@@ -5,6 +5,7 @@ import { FeatureCard,CommunityCard,TestimonialCard,PostCard,Select ,InputButton}
 import service from "../appwrite/config";
 import { get, useForm } from "react-hook-form";
 import variables from "../appwrite/variables";
+import { universalTutorialAuthToken as AuthToken } from "../appwrite/auth";
 
 function Home({
     showMyPosts=false
@@ -13,12 +14,11 @@ function Home({
     const authStatus=useSelector((state)=> state.auth.status)
     const authData=useSelector((state)=>state.auth.userData)
     const [posts,setPosts]=useState([])
-    const {register,handleSubmit,getValues,setValue} =useForm({defaultValues:{
-        country:""
-    }})
+    const {register,handleSubmit,getValues,setValue} =useForm()
     const [countries,setCountries]=useState()
     const [states,setStates]=useState()
     const [cities,setCities]=useState()
+    const [error,setError]=useState()
 
 
     useEffect(() => {
@@ -26,16 +26,17 @@ function Home({
           try {
             const response = await fetch("https://www.universal-tutorial.com/api/countries/", {
               headers: {
-                "Authorization": `Bearer ${variables.universalTutorialAuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
+                "Authorization": `Bearer ${AuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
                 "Accept": "application/json"
               }
             });
             if (response.ok) {
               const data = await response.json();
               setCountries(data);
-              console.log("countries:",data)
+
             } else {
-              console.error('Failed to fetch data');
+              
+              setError('API authToken is expired. ')
             }
           } catch (error) {
             console.error('Error fetching data:', error);
@@ -50,7 +51,7 @@ function Home({
         try {
             const response = await fetch(`https://www.universal-tutorial.com/api/states/${selectedCountry}`, {
               headers: {
-                "Authorization": `Bearer ${variables.universalTutorialAuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
+                "Authorization": `Bearer ${AuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
                 "Accept": "application/json"
               }
             });
@@ -58,7 +59,7 @@ function Home({
             if (response.ok) {
               const data = await response.json();
               setStates(data);
-              console.log("state:",data)
+
             } else {
               console.error('Failed to fetch data');
             }
@@ -72,7 +73,7 @@ function Home({
         try {
             const response = await fetch(`https://www.universal-tutorial.com/api/cities/${selectedState}`, {
               headers: {
-                "Authorization": `Bearer ${variables.universalTutorialAuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
+                "Authorization": `Bearer ${AuthToken}`, // Replace YOUR_ACCESS_TOKEN_HERE with your actual access token
                 "Accept": "application/json"
               }
             });
@@ -80,7 +81,7 @@ function Home({
             if (response.ok) {
               const data = await response.json();
               setCities(data);
-              console.log("cities:",data)
+            //   console.log("cities:",data)
             } else {
               console.error('Failed to fetch data');
             }
@@ -96,11 +97,9 @@ function Home({
             if(showMyPosts ){
                 try {
                     if(authData){
-
-                    
                         service.getPosts(authData.$id).then((data)=>{
                             setPosts(data.documents)
-                            console.log("myposts data received",data)
+
                         })
                     }
                     
@@ -113,7 +112,7 @@ function Home({
                 try {
                     service.getAllPosts().then((data)=>{
                         setPosts(data.documents);
-                        console.log("data received:",data)
+
                     });
                     
                 } catch (error) {
@@ -131,7 +130,18 @@ function Home({
 
     const searchForm=async(data)=>{
         console.log(data);
-        return 
+        try {
+            const response=await service.getPostsFilter(data);
+            if(response){
+                console.log("response:",response)
+                setPosts(response.documents)
+            }
+            
+        } catch (error) {
+            console.log(error.message)
+            throw error
+        }
+
     }
     return authStatus? (
         <div className=" mx-8 sm:mx-24 md:mx-20 lg:mx-28 xl:mx-36 mb-16  ">   
@@ -145,7 +155,7 @@ function Home({
                         objKey="country_name"       //this is same of key in countries array
                         arr={countries} 
                         onchange={(e)=> handleCountry(e.target.value)}
-                        className=" md:w-full  border px-2  py-2  md:mr-1 my-1  text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                        className=" md:w-full  border px-2  py-2  md:mr-1 my-1  text-[#00000096] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
                         {...register("country",{
                             required:true
                         })}    
@@ -155,10 +165,8 @@ function Home({
                         objKey="state_name"       //this is same of key in states array
                         arr={states} 
                         onchange={(e)=> handleState(e.target.value)}
-                        className=" md:w-full border px-2 py-2  md:mx-1 my-1 text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
-                        {...register("state",{
-                            required:true
-                        })} 
+                        className=" md:w-full border px-2 py-2  md:mx-1 my-1 text-[#00000096] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                        {...register("state")} 
                     />
                     
                     <Select
@@ -166,19 +174,22 @@ function Home({
                         objKey="city_name"
                         arr={cities} 
                         
-                        className="md:w-full border px-2 py-2 md:mx-1 my-1  text-[#00000051] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
-                        {...register("city",{
-                            required:true
-                         })}
+                        className="md:w-full border px-2 py-2 md:mx-1 my-1  text-[#00000096] font-semibold focus:outline-none focus:border-[#006494]  rounded-sm"
+                        {...register("city")}
                     />
                     <InputButton type="submit" content="Filter"  className="bg-[#2F87FE] hover:bg-[#0570fc] px-6 py-2  md:ml-1 my-1 text-white   rounded-sm  font-semibold text-lg w-full" />
 
                 </form>
                 
+                {error && (
+                <div className="text-[#00000096]">{error}</div>
+            )}
             </div>
-            <div className="flex flex-wrap justify-center  w-full   shadow-[0px_0px_70px_0px_rgba(0,0,0,0.15)]  px-6 py-6 rounded-md">
+
+            
+            <div className="flex flex-wrap justify-center  w-full   shadow-[0px_0px_70px_-20px_rgba(0,0,0,0.15)] px-6 py-6 rounded-md">
                 {posts.map((post) => (
-                    <div key={post.$id} className='p-2 my-3 mx-auto sm:w-60 w-72    text-center  ' >
+                    <div key={post.$id} className='p-2 my-3 mx-auto  w-80    text-center  hover:bg-[#F5F5F5] rounded-md' >
                         <PostCard {...post} />
                     </div>
                     

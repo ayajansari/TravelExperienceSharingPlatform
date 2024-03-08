@@ -32,8 +32,8 @@ function Footer(){
                 <h1 className="text-white  font-semibold text-lg">Subscribe to our Newsletter</h1>
                 <p className="text-[#ffffff95] mt-1 mb-1 ">The latest news, articles, and resources, sent to your inbox weekly.</p>
                 <div className="" >
-                    <input type="text" placeholder="Enter your Email" className="focus:outline-none py-2 px-3  mr-4 my-1 rounded-md w-72" />
-                    <input type="button" value="Subscribe"   className= "text-[#2f87fe] font-bold bg-white py-2 px-4 rounded-md" />
+                    <input type="text" placeholder="Your email address..." className="focus:outline-none py-2 px-3  mr-4 my-1 rounded-md w-72" />
+                    <input type="button" value="Subscribe"   className= "text-[#2f87fe] hover:cursor-pointer font-bold bg-white py-2 px-4 rounded-md" />
                 </div>
             </div>
 
