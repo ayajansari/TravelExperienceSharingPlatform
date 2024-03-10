@@ -5,9 +5,9 @@ function Dashboard(){
     const userData=useSelector((state)=>state.auth.userData)
     console.log(userData)
     return (
-        <div className=' bg-red-600 '>
+        <div className='  '>
 
-            <div className='text-sky-700 rounded-lg w-full p-8'>fj;dkfd;d j;</div>
+            <div className='text-sky-700 bg-red-600 rounded-lg w-full p-8'>f</div>
             
             
             {/* <div className='flex md:flex-row flex-col  '>
