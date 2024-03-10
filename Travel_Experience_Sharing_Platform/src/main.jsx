@@ -5,14 +5,11 @@ import './index.css'
 import store from "./store/store.js"
 import { Provider } from "react-redux"
 import {RouterProvider,Route,createBrowserRouter,createRoutesFromElements} from "react-router-dom"
-import {Home,Login,Signup,Search,MyPosts,Post,AddPost,EditPost} from "./exports.js"
+import {Home,Login,Signup,Search,MyPosts,Post,AddPost,EditPost,Dashboard} from "./exports.js"
+
 
 
 const router=createBrowserRouter(
-
-  
-  
-
 
   createRoutesFromElements(
 
@@ -26,6 +23,9 @@ const router=createBrowserRouter(
       <Route path="/post/:slug" element={<App>  <Post/> </App> } />
       <Route path="/add-post" element={<App> <AddPost/> </App> } />
       <Route path="/edit-post/:slug" element={<App> <EditPost/> </App> } />
+      <Route path="/user/dashboard" element={<App> <Dashboard/>  </App> } />
+      <Route path="/user/edit" element={<App>  </App> } />
+      <Route path="/user/settings" element={<App> </App> } />
 
       </Route>
 

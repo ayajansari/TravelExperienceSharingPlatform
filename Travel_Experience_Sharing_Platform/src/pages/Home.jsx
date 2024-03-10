@@ -126,7 +126,7 @@ function Home({
     },[authStatus]) //authstatus because it may happen that authStatus has not received user data it is taking
     //time so landing page will be shown and after some time when authStatus gets values we want to rerun the useEffect 
 
-    
+
 
     const searchForm=async(data)=>{
         console.log(data);

@@ -8,3 +8,4 @@
 #use nodejs+expressjs in backend use postman for api 
 #add dark theme ,light theme
 #create div in post/:slug where show author name, date of publishement of post
+#show all users in footer users link

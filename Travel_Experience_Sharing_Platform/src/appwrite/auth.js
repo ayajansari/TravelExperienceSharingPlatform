@@ -69,7 +69,7 @@ class Authentication{
 const authService=new Authentication()
 export default authService;
 
-export const universalTutorialAuthToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJzaGFyZXRyYXZlbGV4cDIwMjRAZ21haWwuY29tIiwiYXBpX3Rva2VuIjoicnNUenYtT0l6eXJ2ODdVc3o3djBwTEtoa1g1WVlmcGFMWGp6VUxkM3BBU19TQ1VkcjdDaFBBVzVmVThOUEdBTVdYQSJ9LCJleHAiOjE3MDk5MTkzMjN9.1Wd-bVgjp5YGLtnAyfLWhUqCZiI-nduT2y7EmAJzvzU"
+export var universalTutorialAuthToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJzaGFyZXRyYXZlbGV4cDIwMjRAZ21haWwuY29tIiwiYXBpX3Rva2VuIjoicnNUenYtT0l6eXJ2ODdVc3o3djBwTEtoa1g1WVlmcGFMWGp6VUxkM3BBU19TQ1VkcjdDaFBBVzVmVThOUEdBTVdYQSJ9LCJleHAiOjE3MTAwNjI3ODl9.tM8tQ4uWsk4Hl2VERF97AZKA2uyEuQBZgZ5Vnb6CrnM"
 setInterval(() => {
     // console.log("fetching")
     const fetchApi=async()=>{
@@ -86,13 +86,13 @@ setInterval(() => {
             }
             });
             if (response.ok) {
-            const data = await response.json();
-            console.log(data.auth_token)
-            universalTutorialAuthToken=data.auth_token;
-
-            } else {
+                const data = await response.json();
+                console.log(data.auth_token)
+                universalTutorialAuthToken=data.auth_token;
             
-            setError('API authToken is expired. ')
+            } else { 
+            
+                console.log('API authToken is expired. ')
             }
         } 
         catch (error) {

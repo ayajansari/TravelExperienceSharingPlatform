@@ -13,9 +13,9 @@ function PostForm({post}){
     const { register,control, handleSubmit,  setValue,  getValues } = useForm({
         defaultValues: {    
             title: post?.title || "",
-            country:"",
-            state: "",  //take empty because state,city,country are dependent
-            city:"",
+            country: "",
+            state:  "",  //take empty because state,city,country are dependent
+            city: "",
             slug: post?.$id || "",     
             content: post?.content || "",
             status:post?.status || ""

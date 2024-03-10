@@ -23,11 +23,12 @@ import TestimonialCard from "./components/TestimonialCard.jsx";
 import RTE from "./components/RTE.jsx";
 import PostCard from "./components/PostCard.jsx";
 import Select from "./components/Select.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 
 export{
     Footer,Header,PostForm, AddPost,EditPost,Home,
     Login,Signup,MyPosts,Search,Post,Container,Logout,InputButton,InputField,
     authService,Logo,FooterLink,FeatureCard,CommunityCard,TestimonialCard,RTE,
-    PostCard,Select
+    PostCard,Select,Dashboard
 
 }

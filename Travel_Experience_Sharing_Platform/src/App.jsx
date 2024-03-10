@@ -31,6 +31,7 @@ function App({children}) {
         prom.then((data)=>{
 
           dispatch(login(data))
+          console.log(data)
            //if user logged in and reloaded page
 
         }).catch(()=>{
