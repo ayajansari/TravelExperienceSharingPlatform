@@ -87,7 +87,7 @@ function Header(){
 
                     {/* theme-change button and profile button  */}
                     <div className="flex mt-3 mb-2">
-                        <div className="px-2 pt-2  rounded-full  mr-2  md:ml-1  md:mr-1 md:inline-block  hover:bg-[#F5F5F5] hover:cursor-pointer " >
+                        <div className="px-2 pt-2  rounded-full  mr-2  md:ml-1  md:mr-1 md:inline-block  hover:bg-[#38bff82c] hover:cursor-pointer " >
                             <img src="/src/assets/night-mode.png" className="w-6" alt="" />
                         </div>
                         {authStatus && (
@@ -106,19 +106,19 @@ function Header(){
                                             <span className="inline-block text-[#2F87FE] text-lg font-semibold">{authData.name}</span>
                                         </div>
 
-                                        <Link to={"/user/dashboard"}>
+                                        <Link to={"/dashboard"}>
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
                                                 <span className=" w-full pl-4 py-0.5  ml-4 mt-3  border-l-4 border-white hover:border-[#2F87FE] hover:text-[#2F87FE] ">My Dashboard </span>
                                             </div>
                                         </Link>
-                                        <Link to={"/user/edit"}>
+                                        <Link to={"/edit"}>
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
                                                 <span className="w-full pl-4 py-0.5 ml-4 mt-3 border-l-4 border-white hover:border-[#2F87FE] hover:text-[#2F87FE] ">Edit Profile </span>
                                             </div>
                                         </Link>
-                                        <Link to={"/user/settings"}>
+                                        <Link to={"/settings"}>
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/pencil.png" className="w-6 pl-2" alt="" /> */}
                                                 <span className="w-full  pl-4 py-0.5  ml-4 mt-3 mb-3 border-l-4 border-white hover:border-[#2F87FE] hover:text-[#2F87FE] ">Account Settings</span>

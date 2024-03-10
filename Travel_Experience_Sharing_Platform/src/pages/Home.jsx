@@ -126,7 +126,7 @@ function Home({
     },[authStatus]) //authstatus because it may happen that authStatus has not received user data it is taking
     //time so landing page will be shown and after some time when authStatus gets values we want to rerun the useEffect 
 
-
+    
 
     const searchForm=async(data)=>{
         console.log(data);
@@ -187,9 +187,9 @@ function Home({
             </div>
 
             
-            <div className="flex flex-wrap justify-center  w-full   shadow-[0px_0px_70px_-20px_rgba(0,0,0,0.15)] px-6 py-6 rounded-md">
+            <div className="flex flex-wrap justify-center  w-full   shadow-[0px_0px_70px_0px_rgba(0,0,0,0.15)]  px-6 py-6 rounded-md">
                 {posts.map((post) => (
-                    <div key={post.$id} className='p-2 my-3 mx-auto  w-80    text-center  hover:bg-[#F5F5F5] rounded-md' >
+                    <div key={post.$id} className='p-2 my-3 mx-auto sm:w-60 w-72    text-center  ' >
                         <PostCard {...post} />
                     </div>
                     

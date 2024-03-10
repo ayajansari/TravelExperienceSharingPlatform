@@ -3,7 +3,6 @@ import { Client,ID,Databases,Storage,Query } from "appwrite";
 
 export class Service{
     client=new Client()
-
     databases;
     bucket;//bucket is nothing but storage . storage and databases both are different
     //databases are for storing structured data while  storage is used for unstructed data like images,video,audio,etc.
@@ -14,7 +13,6 @@ export class Service{
             .setProject(variables.myProjectId)
         this.databases=new Databases(this.client)
         this.bucket=new Storage(this.client)
-    
     }
     
     //createDocument
@@ -218,24 +216,6 @@ export class Service{
         )
 
     }
-
-    //add email to newsletters
-    async newsletter(email,userId){
-        try{
-            return await this.databases.createDocument(
-                variables.myDatabaseId,    //[DATABASE_ID]
-                variables.myNewsletterId,  //[COLLECTION_ID]
-                userId,                       //[DOCUMENT_ID]
-                {
-                    email
-                }
-            )
-        }
-        catch(error){
-            throw error;
-        }
-    }
-
 }
 
 const service=new Service()

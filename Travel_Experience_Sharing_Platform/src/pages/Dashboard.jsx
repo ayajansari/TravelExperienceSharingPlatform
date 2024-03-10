@@ -7,7 +7,7 @@ function Dashboard(){
     return (
         <div className=' bg-red-600 '>
 
-            <div className='text-red-600 rounded-lg p-8'>fj;dkfd;d j;</div>
+            <div className='text-sky-700 rounded-lg w-full p-8'>fj;dkfd;d j;</div>
             
             
             {/* <div className='flex md:flex-row flex-col  '>
