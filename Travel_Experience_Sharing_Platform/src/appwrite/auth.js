@@ -69,7 +69,7 @@ class Authentication{
 const authService=new Authentication()
 export default authService;
 
-export const universalTutorialAuthToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJzaGFyZXRyYXZlbGV4cDIwMjRAZ21haWwuY29tIiwiYXBpX3Rva2VuIjoicnNUenYtT0l6eXJ2ODdVc3o3djBwTEtoa1g1WVlmcGFMWGp6VUxkM3BBU19TQ1VkcjdDaFBBVzVmVThOUEdBTVdYQSJ9LCJleHAiOjE3MDk5MTkzMjN9.1Wd-bVgjp5YGLtnAyfLWhUqCZiI-nduT2y7EmAJzvzU"
+export var universalTutorialAuthToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJzaGFyZXRyYXZlbGV4cDIwMjRAZ21haWwuY29tIiwiYXBpX3Rva2VuIjoicnNUenYtT0l6eXJ2ODdVc3o3djBwTEtoa1g1WVlmcGFMWGp6VUxkM3BBU19TQ1VkcjdDaFBBVzVmVThOUEdBTVdYQSJ9LCJleHAiOjE3MDk5MTkzMjN9.1Wd-bVgjp5YGLtnAyfLWhUqCZiI-nduT2y7EmAJzvzU"
 setInterval(() => {
     // console.log("fetching")
     const fetchApi=async()=>{
@@ -102,5 +102,5 @@ setInterval(() => {
     fetchApi()
     
 
-},100000);
+},12*60*60*1000);
 

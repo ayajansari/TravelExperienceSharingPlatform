@@ -24,10 +24,12 @@ import RTE from "./components/RTE.jsx";
 import PostCard from "./components/PostCard.jsx";
 import Select from "./components/Select.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import Settings from "./pages/Settings.jsx";
+import Edit from "./pages/Edit.jsx";
 export{
     Footer,Header,PostForm, AddPost,EditPost,Home,
     Login,Signup,MyPosts,Search,Post,Container,Logout,InputButton,InputField,
     authService,Logo,FooterLink,FeatureCard,CommunityCard,TestimonialCard,RTE,
-    PostCard,Select,Dashboard
+    PostCard,Select,Dashboard,Settings,Edit
 
 }

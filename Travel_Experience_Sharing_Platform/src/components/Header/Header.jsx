@@ -101,7 +101,7 @@ function Header(){
                                 {showProfile && (
                                     <div className="absolute top-14 right-4 w-72 flex flex-col mt-2  bg-white rounded-md  shadow-2xl" >
 
-                                        <div className="flex items-center px-4 py-3 border-b-2  border-b-[#d5dde1]">
+                                        <div className="flex items-center px-4 py-3 border-b  border-b-[#d5dde1]">
                                             <img src="/src/assets/user.png" className="pr-4  w-12"  alt="" />
                                             <span className="inline-block text-[#2F87FE] text-lg font-semibold">{authData.name}</span>
                                         </div>
@@ -126,10 +126,10 @@ function Header(){
                                         </Link>
                                         
                                         <div className=" rounded-bl-lg rounded-br-lg cursor-pointer" >
-                                            <hr className="w-full border-b-2 border-b-[#d5dde1] " />
+                                            <hr className="w-full border-b-1 border-b-[#d5dde1] " />
                                             <div className="flex items-center  text-black text-md  ">
                                                 {/* <img src="/src/assets/turn-off.png" className="w-6 pl-1 " alt="" /> */}
-                                                <Logout className="w-full pl-4 py-0.5 mx-4 my-3 border-l-4 border-white hover:border-[#2F87FE] hover:text-[#2F87FE] " />
+                                                <Logout className="w-full pl-4 py-0.5 mx-4 my-2 border-l-4 border-white hover:border-[#2F87FE] hover:text-[#2F87FE] " />
                                             </div>  
                                         </div>
                                         
@@ -152,7 +152,7 @@ function Header(){
                     <div className="  w-72 h-screen   bg-white px-3">
                         <div className="w-full " onClick={()=>setshowMenu(!showMenu)} > 
                             <div className="py-4 px-2">
-                                <p className="w-8 ml-auto  mr-2 p-2 text-black bg-[#0000000a] font-bold text-lg rounded-sm">X</p>
+                                <p className="w-8 ml-auto  mr-2 px-2 py-1 text-black text-center hover:bg-[#0000000a] font-bold text-lg rounded-sm">X</p>
                             </div>
                         
                         </div>

@@ -5,7 +5,7 @@ import './index.css'
 import store from "./store/store.js"
 import { Provider } from "react-redux"
 import {RouterProvider,Route,createBrowserRouter,createRoutesFromElements} from "react-router-dom"
-import {Home,Login,Signup,Search,MyPosts,Post,AddPost,EditPost,Dashboard} from "./exports.js"
+import {Home,Login,Signup,Search,MyPosts,Post,AddPost,EditPost,Dashboard, Edit, Settings} from "./exports.js"
 
 
 
@@ -28,6 +28,8 @@ const router=createBrowserRouter(
       <Route path="/add-post" element={<App> <AddPost/> </App> } />
       <Route path="/edit-post/:slug" element={<App> <EditPost/> </App> } />
       <Route path="/user/dashboard" element={<App> <Dashboard/> </App> } />
+      <Route path="/user/edit" element={<App> <Edit/> </App> } />
+      <Route path="/user/settings" element={<App> <Settings/> </App> } />
       </Route>
 
   )

@@ -15,7 +15,7 @@ function Dashboard(){
         <div className=' p-8 md:px-28 lg:p-8 xl:px-20 bg-[#F7F8FA] '>
 
             
-            
+            <p className='text-xl py-8 text-[#757575]'>username/dashboard</p>
             
             <div className='flex lg:flex-row flex-col '>
                 <div className='lg:w-1/3 w-full lg:h-64  '>
@@ -51,7 +51,7 @@ function Dashboard(){
                                 <img src="/src/assets/instagram.png" alt="" className='w-6 h-6 ' />
                                 <p className='pl-2'>https://www.instagram.com/user_name</p>
                             </div>
-                            <div className='flex py-1'>
+                            <div className='flex py-2'>
                                 <img src="/src/assets/facebook.png" alt="" className='w-6 h-6 ' />
                                 <p className='pl-2' >https://www.facebook.com/user_name</p>
                             </div>
