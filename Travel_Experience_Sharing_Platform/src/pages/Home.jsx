@@ -112,8 +112,10 @@ function Home({
                 try {
                     service.getAllPosts().then((data)=>{
                         setPosts(data.documents);
-
+                        console.log(data.documents)
+                        
                     });
+                    
                     
                 } catch (error) {
                     console.log("error at getAllPosts:",error.message)
@@ -189,7 +191,7 @@ function Home({
             
             <div className="flex flex-wrap justify-center  w-full   shadow-[0px_0px_70px_0px_rgba(0,0,0,0.15)]  px-6 py-6 rounded-md">
                 {posts.map((post) => (
-                    <div key={post.$id} className='p-2 my-3 mx-auto sm:w-60 w-72    text-center  ' >
+                    <div key={post.$id} className='p-2 my-3 w-full  sm:w-3/4 md:w-80 lg:w-80    text-center  ' >
                         <PostCard {...post} />
                     </div>
                     
