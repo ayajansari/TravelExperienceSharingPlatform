@@ -208,13 +208,61 @@ export class Service{
                     // URL for a file. It is commonly used to generate URLs for 
                     //image and video previews uploaded to the Appwrite storage service. 
 
-    getFilePreview(fileId){
+    async getFilePreview(fileId){
 
-        return this.bucket.getFilePreview(
+        return await this.bucket.getFilePreview(
             variables.myBucketId,
             fileId
         )
 
+    }
+
+    //add email to newsletters
+    async newsletter(email,userId){
+        try{
+            return await this.databases.createDocument(
+                variables.myDatabaseId,    //[DATABASE_ID]
+                variables.myNewsletterId,  //[COLLECTION_ID]
+                userId,                       //[DOCUMENT_ID]
+                {
+                    email
+                }
+            )
+        }
+        catch(error){
+            throw error;
+        }
+    }
+
+    //get userDetails
+    async userDetails(id){
+        return await this.databases.getDocument(
+            variables.myDatabaseId,
+            variables.myUsersDetailsId,
+            id
+        )
+    }
+
+    //update userDetails
+    async updataDetails({$id,name}){
+        try {
+            // return await this.databases.updateDocument(
+            //     variables.myDatabaseId,
+            //     variables.myUsersDetailsId,
+            //     $id,
+            //     {
+            //         name,
+            //         ,
+
+            //     }
+            // )  
+
+            
+        } catch (error) {
+            console.log(error.message)
+            throw error;
+        }
+        
     }
 }
 

@@ -1,12 +1,16 @@
 import React from 'react';
 import { InputButton, InputField } from '../exports';
 import { useForm } from 'react-hook-form'; 
+import { useSelector } from 'react-redux';
+import service from '../appwrite/config';
 function Edit(){
-    
+    const userData=useSelector((state)=>state.auth.userData)
     const {handleSubmit,register}=useForm()
+    
     const handleSave=(data)=>{
-        console.log(data);
-
+        data={...data,"$id":userData.$id}
+        // console.log("mydata:",data);
+        service.updataDetails(data);
     }
     return (
 

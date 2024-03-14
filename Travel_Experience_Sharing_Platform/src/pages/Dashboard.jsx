@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { InputButton } from '../exports';
 import { useNavigate } from 'react-router-dom';
- 
+import service from '../appwrite/config';
 function Dashboard(){
+
     const userData=useSelector((state)=>state.auth.userData)
-    console.log(userData)
+    
+    
     const navigate=useNavigate()
+
+    useEffect(()=>{
+        
+        if(userData){
+            console.log("user",userData.$id)
+            // service.userDetails(userData.$id).then((data)=>{
+            //     console.log(data);
+            // })
+
+        }
+        
+    },userData)
 
     const handleEdit=()=>{
         navigate("/user/edit")
@@ -90,9 +104,7 @@ function Dashboard(){
                                 About
                             </div>
                             <div className='py-2  sm:text-lg'>
-                                Inquisitive and eager to learn, I navigate the world with a curious mind.
-                                With a penchant for exploration,I seek knowledge in every corner.
-                                My determination fuels my journey, as I strive for growth and excellence.
+                                You haven't {" provided anything yet."}
                             </div>
                         </div>
                         <div className='px-8 py-4 mt-2 bg-white h-56 rounded-lg shadow-lg'>
