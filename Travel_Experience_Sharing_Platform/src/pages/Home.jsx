@@ -146,6 +146,9 @@ function Home({
 
     }
     return authStatus? (
+        <div>
+
+        
         <div className=" mx-8 sm:mx-24 md:mx-20 lg:mx-28 xl:mx-36 mb-16  ">   
             
             <div  className="my-16">
@@ -189,15 +192,17 @@ function Home({
             </div>
 
             
-            <div className="flex flex-wrap justify-center  w-full   shadow-[0px_0px_70px_0px_rgba(0,0,0,0.15)]  px-6 py-6 rounded-md">
+            
+            
+        </div>
+        <div className="flex flex-wrap justify-center  w-full py-12  bg-[#F2F7F5]   px-6  ">
                 {posts.map((post) => (
-                    <div key={post.$id} className='p-2 my-3 w-full  sm:w-3/4 md:w-80 lg:w-80    text-center  ' >
+                    <div key={post.$id} className='p-2 my-3  w-full  sm:w-3/4 md:w-80 lg:w-80    text-center  ' >
                         <PostCard {...post} />
                     </div>
                     
                 ))}
             </div>
-            
         </div>
     ) : (
         // is user is not logged-in show landing page

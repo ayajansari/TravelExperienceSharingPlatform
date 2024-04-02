@@ -12,11 +12,11 @@ function Settings(){
         
             <div className=' pt-12  '>
                 <p className='text-xl  pb-8 px-8 md:px-24 text-[#757575] '>username/settings</p>
-                <div className='flex flex-col px-6 mx-6 sm:mx-auto sm:w-2/3 md:w-3/5 lg:w-1/2 xl:w-2/5 mb-8  bg-white border py-4  '>
+                <div className='flex flex-col px-6 mx-6 sm:mx-auto sm:w-2/3 md:w-3/5 lg:w-1/2 xl:w-2/5 mb-8  bg-white border py-4 rounded-md '>
                     
                     <h1 className='border-b pb-4 text-lg md:text-xl md:text-start text-center'>Change Password</h1>
 
-                    <div  className="flex  px-2 mt-5 border hover:border-[#1080e9]  rounded-sm">
+                    <div  className="flex  px-2 mt-5 border hover:border-[#1080e9]  rounded-md">
                         <input 
                             type={passwordVisible? 'text':'password'} 
                             placeholder="Old Password" 
@@ -33,7 +33,7 @@ function Settings(){
 
                         
                     </div>
-                    <div  className="flex  px-2 mt-5 border hover:border-[#1080e9]  rounded-sm">
+                    <div  className="flex  px-2 mt-5 border hover:border-[#1080e9]  rounded-md">
                         <input 
                             type={passwordVisible? 'text':'password'} 
                             placeholder="New Password" 
@@ -64,7 +64,7 @@ function Settings(){
             </div>
             <div className=' pb-12  '>
                 
-                <div className='flex flex-col px-6 mx-6 sm:mx-auto sm:w-2/3 md:w-3/5 lg:w-1/2 xl:w-2/5   bg-white border py-4  '>
+                <div className='flex flex-col px-6 mx-6 sm:mx-auto sm:w-2/3 md:w-3/5 lg:w-1/2 xl:w-2/5   bg-white border py-4 rounded-md '>
                     
                     <h1 className='border-b pb-4 text-lg md:text-xl md:text-start text-center'>Delete My Account</h1>
 
