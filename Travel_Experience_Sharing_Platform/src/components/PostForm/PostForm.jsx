@@ -27,7 +27,7 @@ function PostForm({post}){
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
     const [error,setError]=useState("")
-
+    const [imageUrl,setImageUrl]=useState()
     const [countries,setCountries]=useState()
     const [states,setStates]=useState()
     const [cities,setCities]=useState()
@@ -101,12 +101,19 @@ function PostForm({post}){
         }
     }
 
+    useCallback(()=>{
+        appwriteService.getFilePreview(post.featuredImage).then((url)=>{
+            setImageUrl(url);
+            console.log("received url:",url)
+        })
+
+    },[])
     
     const formSubmit = async (data) => {    //data is the entire data of form 
 
         // console.log(data.content.length)
-        if(data.content.length>255){
-            setError("Length of post content should be less than 255 characters")
+        if(data.content.length>1000){
+            setError("Length of post content should be less than 1000 characters")
             return 
         }
 
@@ -118,11 +125,14 @@ function PostForm({post}){
                 if (file) {
                     appwriteService.deleteFile(post.featuredImage); //delete previous image
                 }
-                console.log("post id:",data)
+                console.log("author name",userData.name)
                 const dbPost = await appwriteService.updatePost(post.$id, {
                     ...data,
+                    author:userData.name,
                     featuredImage: file ? file.$id : undefined,
                 });
+
+                
 
                 if (dbPost) {
 
@@ -131,24 +141,30 @@ function PostForm({post}){
                 
             } catch (error) {
                 console.log(error.message)
+                
                 throw error
             }
             
-        } else { 
+        } else {    //add-post
                
             
-            
-            const file = await appwriteService.uploadFile(data.image[0]);//to get imageID
-            console.log("file uploaded",file)
-            if (file) {
-                const fileId = file.$id;
-                data.featuredImage = fileId;
-                const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
+            try {
+                const file = await appwriteService.uploadFile(data.image[0]);//to get imageID
+                console.log("file uploaded",file)
+                if (file) {
+                    const fileId = file.$id;
+                    data.featuredImage = fileId;
+                    const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
 
-                if (dbPost) {
-                    navigate(`/post/${dbPost.$id}`);
+                    if (dbPost) {
+                        navigate(`/post/${dbPost.$id}`);
+                    }
                 }
+            } catch (error) {
+                setError("size of image should be less than 1MB")
+                console.log(error)
             }
+            
         }
     };
 
@@ -168,15 +184,7 @@ function PostForm({post}){
         return "";
     }, []);
 
-    // React.useEffect(() => {
-    //     const subscription = watch((value, { name }) => {
-    //         if (name === "title") {
-    //             setValue("slug", slugTransform(value.title), { shouldValidate: true });
-    //         }
-    //     });
 
-    //     return () => subscription.unsubscribe();
-    // }, [watch, slugTransform, setValue]);
 
 
     return (
@@ -255,10 +263,10 @@ function PostForm({post}){
                                 })}
                             />
                             
-                            {post && (
+                            {imageUrl && (
                                 <div className="w-32 mb-4 mr-6">
                                     <img
-                                        src={ `${appwriteService.getFilePreview(post.featuredImage)}`}
+                                        src={ imageUrl}
                                         alt="img"
                                         className="rounded-lg "
                                     />

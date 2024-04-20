@@ -41,7 +41,8 @@ export class Service{
     }
 
     //updateDocument
-    async updatePost(slug,{title,content,featuredImage,status,country,state,city}){
+    async updatePost(slug,{title,content,featuredImage,status,country,state,city,author}){
+        console.log("author",author)
         try{
             return await this.databases.updateDocument(
                 variables.myDatabaseId,
@@ -54,7 +55,9 @@ export class Service{
                     status,
                     country,
                     state,
-                    city
+                    city,
+                    name:author
+                    
                 }
             )     
         }
@@ -88,6 +91,7 @@ export class Service{
                 slug
             )
         } catch (error) {
+            console.log("error getting post:",error)
             return false
         }
     }
@@ -210,11 +214,20 @@ export class Service{
 
     async getFilePreview(fileId){
 
-        return await this.bucket.getFilePreview(
-            variables.myBucketId,
-            fileId
-        )
-
+        try{
+            console.log("got file id:",fileId)
+            let file=await this.bucket.getFilePreview(
+                variables.myBucketId,
+                fileId
+            )
+            
+            // console.log("filepreview",file)
+            return file
+           
+        }catch(err){
+            console.log("image preview error:",err)
+            throw err
+        }
     }
 
     //add email to newsletters
@@ -234,14 +247,70 @@ export class Service{
         }
     }
 
-    //get userDetails
-    async userDetails(id){
-        return await this.databases.getDocument(
-            variables.myDatabaseId,
-            variables.myUsersDetailsId,
-            id
-        )
+ 
+
+    //get active and inactive posts number
+    async getActiveInactivePosts(id){
+
+        let obj={
+            "active":0,
+            "inactive":0
+        };
+        try{
+
+            const activePosts=await this.databases.listDocuments(
+                variables.myDatabaseId,
+                variables.myCollectionId,
+                [
+                    Query.equal('userId', id),
+                    Query.equal('status',"Active"),
+
+                ]
+            )
+            if(activePosts){
+                console.log("activePosts:",activePosts)
+                obj["active"]=activePosts.documents.length;
+            }
+
+            const InactivePosts=await this.databases.listDocuments(
+                variables.myDatabaseId,
+                variables.myCollectionId,
+                [
+                    Query.equal('userId', id),
+                    Query.equal('status',"Inactive"),
+
+                ]
+            )
+            if(InactivePosts){
+                console.log(InactivePosts)
+                obj["inactive"]=InactivePosts.documents.length;
+                return obj;
+            }
+
+            
+        }
+        catch(err){
+            console.log("some error while fetching active inactive posts",err)
+        }
     }
+
+    //get profileData from userDetails
+    async userDetails(id){
+        try{
+            return await this.databases.getDocument(
+                variables.myDatabaseId,
+                variables.myUsersDetailsId,
+                id
+            )
+        }
+        catch(error){
+            console.log("user details not found")
+            throw error;
+        }
+    }
+
+   
+
 
     //update userDetails
     async updataDetails({$id,name}){

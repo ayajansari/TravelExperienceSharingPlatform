@@ -32,6 +32,7 @@ function Home({
             });
             if (response.ok) {
               const data = await response.json();
+              console.log("countries:",data)
               setCountries(data);
 
             } else {
@@ -197,7 +198,7 @@ function Home({
         </div>
         <div className="flex flex-wrap justify-center  w-full py-12  bg-[#F2F7F5]   px-6  ">
                 {posts.map((post) => (
-                    <div key={post.$id} className='p-2 my-3  w-full  sm:w-3/4 md:w-80 lg:w-80    text-center  ' >
+                    <div key={post.$id} className='p-2 my-3 w-96  sm:w-1/2 md:w-80 lg:w-80    text-center  ' >
                         <PostCard {...post} />
                     </div>
                     

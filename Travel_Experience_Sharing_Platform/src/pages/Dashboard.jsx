@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { InputButton } from '../exports';
 import { useNavigate } from 'react-router-dom';
@@ -6,21 +6,32 @@ import service from '../appwrite/config';
 function Dashboard(){
 
     const userData=useSelector((state)=>state.auth.userData)
-    
+    const [postDetails,setPostDetails]=useState()
     
     const navigate=useNavigate()
 
     useEffect(()=>{
         
         if(userData){
-            console.log("user",userData.$id)
-            // service.userDetails(userData.$id).then((data)=>{
-            //     console.log(data);
-            // })
+            console.log("loggedin user",userData.$id)
+            service.userDetails(userData.$id).then((data)=>{
+                if(data){
+                    console.log("got user details:",data);
+                }
+            })
+            
+
+            service.getActiveInactivePosts(userData.$id)
+            .then((data)=>{
+                console.log("active inactive post details:",data);
+                setPostDetails(data)
+            }).catch((err)=>{
+                console.log("an error occured",err)
+            })
 
         }
         
-    },userData)
+    },[userData])
 
     const handleEdit=()=>{
         navigate("/user/edit")
@@ -37,11 +48,11 @@ function Dashboard(){
     
                         <div className='   px-6 py-4 mb-4 bg-white shadow-lg rounded-lg'>
                             <div className='flex lg:flex-col items-center flex-row'>
-                                <img src="/src/assets/user (2).png" className="  lg:w-24 w-20   "  alt="" />
+                                <img src="/src/assets/user (3).png" className="  lg:w-24 w-20   "  alt="" />
                                 <div className='mb-4 lg:pl-0 pl-6'>
                                     <div className='flex lg:justify-center items-center lg:pt-3'>
-                                        <p className='text-xl pr-1 '>{userData && "Mohammad Ayaj Ansari"}</p>
-                                        {userData && userData.status &&  (
+                                        <p className='text-xl pr-1 '>{userData && userData.name}</p>
+                                        {userData && userData.emailVerification &&  (
                                             <img src="/src/assets/verified_user.png" alt="" className='w-4 h-4 mt-1' />
                                         )}
                                     </div>
@@ -63,15 +74,15 @@ function Dashboard(){
                             <div className='py-3 overflow-scroll  ' id='custom-ScrollBar'>
                                 <div className='flex py-1'>
                                     <img src="/src/assets/instagram.png" alt="" className='w-6 h-6 ' />
-                                    <p className='pl-2'>https://www.instagram.com/user_name</p>
+                                    <a className='pl-2'>https://www.instagram.com/user_name</a>
                                 </div>
                                 <div className='flex py-2'>
                                     <img src="/src/assets/facebook.png" alt="" className='w-6 h-6 ' />
-                                    <p className='pl-2' >https://www.facebook.com/user_name</p>
+                                    <a className='pl-2' >https://www.facebook.com/user_name</a>
                                 </div>
                                 <div className='flex py-1'>
                                     <img src="/src/assets/twitter.png" alt="" className='w-6 h-6 ' />
-                                    <p className='pl-2'>https://www.twitter.com/user_name</p>
+                                    <a className='pl-2'>https://www.twitter.com/user_name</a>
                                 </div>
 
                             </div>
@@ -85,18 +96,15 @@ function Dashboard(){
                             </div>
                             <div className='py-2 sm:text-lg flex flex-start '>
                                 <div className='w-32 h-28  text-center pt-6'> 
-                                    <h1 className='text-3xl font-semibold text-[#2F87FE]'>100</h1>
+                                    <h1 className='text-3xl font-semibold text-[#2F87FE]'>{postDetails ? postDetails["active"] : 0 }</h1>
                                     <h1 className='pt-2'>Active Posts</h1>
                                 </div>
                                 <div className='w-32 h-28 text-center pt-6'>
-                                    <h1 className='text-3xl font-semibold text-[#2F87FE]'>10</h1>
+                                    <h1 className='text-3xl font-semibold text-[#2F87FE]'>{postDetails ? postDetails["inactive"] : 0}</h1>
                                     <h1 className='pt-2'>Inactive Posts</h1>
 
                                 </div>
-                                <div className='w-32 h-28  text-center pt-6'>
-                                    <h1 className='text-3xl font-semibold text-[#2F87FE]'>1</h1>
-                                    <h1 className='pt-2'>Polls</h1>
-                                </div>
+
                             </div>
                         </div>
                         <div className='px-8 py-4 my-2 bg-white h-56 rounded-lg shadow-lg'>

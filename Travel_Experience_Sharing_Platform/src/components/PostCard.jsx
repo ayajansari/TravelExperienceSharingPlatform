@@ -1,24 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import service from '../appwrite/config';
 import { Link, useNavigate } from 'react-router-dom';
 import {InputButton} from "../exports";
+import appwriteService from "../appwrite/config"
+import { useEffect } from 'react';
 
 function PostCard({ $id,title,featuredImage,city,country}){
  
+    const [imageUrl,setImageUrl]=useState('')
     const navigate=useNavigate()
     const handleExplore=()=>{
         navigate(`/post/${$id}`)
     }
+
+    useEffect(() => {
+        const fetchImagePreview = async () => {
+            try {
+                // if(featuredImage){
+
+                
+                    const filePreview =await  appwriteService.getFilePreview(featuredImage);
+                    console.log("i am getting",filePreview)
+                    setImageUrl(filePreview);
+                // }
+            } catch (error) {
+                console.error('Error fetching image preview:', error);
+            }
+        };
+
+        fetchImagePreview();
+    }, [featuredImage]); // Run this effect only once, on component mount
+
+
+
     return (
         <Link to={`/post/${$id}`}>
-            <div className="w-full bg-white
+            <div className="w-full bg-white border border-slate-300
              rounded-md overflow-hidden  px-3 pt-3"> 
                 <div className="w-full   justify-center mb-4">
-                    <img src={`${service.getFilePreview(featuredImage)}`}  alt="img" className="w-full  h-60  sm:h-52 md:h-40 lg:h-48 rounded-md"/> 
+
+                    {imageUrl ? (
+
+                        <img src={imageUrl} alt="File Preview" className="w-full  h-52  sm:h-44 md:h-48  rounded-md" />
+
+                    ) : (
+
+                        <p>Loading...</p>
+                    )}
+
                 </div> 
                 <h2 className=" text-start md:text-md   pb-2"> {title} </h2>
                 <div className='flex items-center'>
-                    <img src="/src/assets/location.png" alt="" className='w-5 h-5' />
+                    <img src="/src/assets/gps.png" alt="" className='w-8' />
                     <p className='pl-2'>{city+","+country}</p>
                 </div>
                 
