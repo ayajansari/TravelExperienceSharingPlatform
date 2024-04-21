@@ -19,12 +19,6 @@ function Edit(){
         }
     })
 
-    if(userData){
-        // console.log("userDetails:",userData)
-        setValue("Email",userData.email)
-
-    }
-
 
     useEffect(()=>{
         try{
@@ -34,7 +28,6 @@ function Edit(){
                     console.log("userProfileData received:",data);
                     setUserDetails(data.Name)
                     setValue("Name",data.Name)
-                    setValue("Email",data.Email)
                     setValue("About",data.About)
                     setValue("Instagram",data.Instagram)
                     setValue("Facebook",data.Facebook)
@@ -122,7 +115,7 @@ function Edit(){
                         <InputField 
                             type="email"
                             placeholder="Email"
-                            defaultValue={getValues("Email")}
+                            defaultValue={userData && userData.email}
                             className="w-full px-4 py-3 my-4   border focus:outline-none  text-[#00000075]  rounded-md " 
                             disabled={true}
                         />
