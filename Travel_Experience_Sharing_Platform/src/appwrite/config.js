@@ -215,7 +215,7 @@ export class Service{
     async getFilePreview(fileId){
 
         try{
-            console.log("got file id:",fileId)
+            // console.log("got file id:",fileId)
             let file=await this.bucket.getFilePreview(
                 variables.myBucketId,
                 fileId
@@ -310,21 +310,48 @@ export class Service{
     }
 
    
+    //create userDetails
+    async createUserDetails({$id,Name,About,Instagram,Twitter,Facebook}){
+        try {
+            return await this.databases.createDocument(
+                variables.myDatabaseId,
+                variables.myUsersDetailsId,
+                $id,
+                {
+                    Name,
+                    Instagram,
+                    Facebook,
+                    Twitter,
+                    About
+                    
+                }
+            )  
+
+            
+        } catch (error) {
+            console.log(error.message)
+            throw error;
+        }
+        
+    }
 
 
     //update userDetails
-    async updataDetails({$id,name}){
+    async updateUserDetails({$id,Name,About,Instagram,Twitter,Facebook}){
         try {
-            // return await this.databases.updateDocument(
-            //     variables.myDatabaseId,
-            //     variables.myUsersDetailsId,
-            //     $id,
-            //     {
-            //         name,
-            //         ,
-
-            //     }
-            // )  
+            return await this.databases.updateDocument(
+                variables.myDatabaseId,
+                variables.myUsersDetailsId,
+                $id,
+                {
+                    Name,
+                    About,
+                    Instagram,
+                    Facebook,
+                    Twitter
+                    
+                }
+            )  
 
             
         } catch (error) {

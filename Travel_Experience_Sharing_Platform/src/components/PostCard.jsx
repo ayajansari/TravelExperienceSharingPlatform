@@ -20,7 +20,7 @@ function PostCard({ $id,title,featuredImage,city,country}){
 
                 
                     const filePreview =await  appwriteService.getFilePreview(featuredImage);
-                    console.log("i am getting",filePreview)
+                    // console.log("i am getting",filePreview)
                     setImageUrl(filePreview);
                 // }
             } catch (error) {

@@ -7,17 +7,20 @@ function Dashboard(){
 
     const userData=useSelector((state)=>state.auth.userData)
     const [postDetails,setPostDetails]=useState()
-    
+    const [userDetails,setUserDetails]=useState()
     const navigate=useNavigate()
+
 
     useEffect(()=>{
         
         if(userData){
             console.log("loggedin user",userData.$id)
             service.userDetails(userData.$id).then((data)=>{
-                if(data){
-                    console.log("got user details:",data);
-                }
+                
+                console.log("got user details:",data);
+                    setUserDetails(data); 
+                    
+                
             })
             
 
@@ -51,7 +54,7 @@ function Dashboard(){
                                 <img src="/src/assets/user (3).png" className="  lg:w-24 w-20   "  alt="" />
                                 <div className='mb-4 lg:pl-0 pl-6'>
                                     <div className='flex lg:justify-center items-center lg:pt-3'>
-                                        <p className='text-xl pr-1 '>{userData && userData.name}</p>
+                                        <p className='text-xl pr-1 '>{userDetails && userDetails.Name}</p>
                                         {userData && userData.emailVerification &&  (
                                             <img src="/src/assets/verified_user.png" alt="" className='w-4 h-4 mt-1' />
                                         )}
@@ -74,15 +77,15 @@ function Dashboard(){
                             <div className='py-3 overflow-scroll  ' id='custom-ScrollBar'>
                                 <div className='flex py-1'>
                                     <img src="/src/assets/instagram.png" alt="" className='w-6 h-6 ' />
-                                    <a className='pl-2'>https://www.instagram.com/user_name</a>
+                                    <a className='pl-2'> {userDetails ? userDetails.Instagram :" https://www.instagram.com/user_name"}</a>
                                 </div>
                                 <div className='flex py-2'>
                                     <img src="/src/assets/facebook.png" alt="" className='w-6 h-6 ' />
-                                    <a className='pl-2' >https://www.facebook.com/user_name</a>
+                                    <a className='pl-2' > {userDetails ? userDetails.Facebook :" https://www.facebook.com/user_name"}</a>
                                 </div>
                                 <div className='flex py-1'>
                                     <img src="/src/assets/twitter.png" alt="" className='w-6 h-6 ' />
-                                    <a className='pl-2'>https://www.twitter.com/user_name</a>
+                                    <a className='pl-2'>{userDetails ? userDetails.Twitter :" https://www.twitter.com/user_name"}</a>
                                 </div>
 
                             </div>
@@ -112,7 +115,7 @@ function Dashboard(){
                                 About
                             </div>
                             <div className='py-2  sm:text-lg'>
-                                You haven't {" provided anything yet."}
+                                 {userDetails ? userDetails.About : "You haven't  provided anything yet."}
                             </div>
                         </div>
                         <div className='px-8 py-4 mt-2 bg-white h-56 rounded-lg shadow-lg'>

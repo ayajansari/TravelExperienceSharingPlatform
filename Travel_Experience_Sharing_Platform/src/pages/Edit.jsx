@@ -1,32 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { InputButton, InputField } from '../exports';
 import { useForm } from 'react-hook-form'; 
+import {useNavigate } from "react-router-dom"
 import { useSelector } from 'react-redux';
 import service from '../appwrite/config';
 function Edit(){
     const userData=useSelector((state)=>state.auth.userData)
+    const [userDetails,setUserDetails]=useState()
+    const navigate=useNavigate()
     const {handleSubmit,register,getValues,setValue}=useForm({
         defaultValues:{
-            "name":"",
-            "email":"",
-            "about":"",
-            "instagram":"",
-            "facebook":"",
-            "twitter":""
+            "Name":"",
+            "Email":"",
+            "About":"",
+            "Instagram":"https://instagram.com/user",
+            "Facebook":"https://facebook.com/user",
+            "Twitter":"https://twitter.com/user"
         }
     })
-    let profileData;
+
+    if(userData){
+        // console.log("userDetails:",userData)
+        setValue("Email",userData.email)
+
+    }
+
+
     useEffect(()=>{
         try{
             if(userData){
-                const count=service.listUserDetails(userData.$id);
-                if(count>0){
-                    //userDetails are already present ,only update data
-                    service.getProfileData(userData.$id).then((data)=>{
-                        console.log("userProfileData received:",data);
-                        profileData=data;
-                    })
-                }
+                service.userDetails(userData.$id).then((data)=>{
+                    
+                    console.log("userProfileData received:",data);
+                    setUserDetails(data.Name)
+                    setValue("Name",data.Name)
+                    setValue("Email",data.Email)
+                    setValue("About",data.About)
+                    setValue("Instagram",data.Instagram)
+                    setValue("Facebook",data.Facebook)
+                    setValue("Twitter",data.Twitter)
+ 
+                })
+                
             }
             
         }
@@ -50,25 +65,43 @@ function Edit(){
     //     setInitials();
     // },[setValue])//run only once when component mounts
     // let cnt=0;
-    if(userData){
-        console.log("userDetails:",userData)
-        setValue("name",userData.name)
-        setValue("email",userData.email)
-        // cnt++;
-        // console.log(getValues("name"))
-    }
+    
     
     const handleSave=async (data)=>{
+        console.log("mydata:",data);
         
         data={...data,"$id":userData.$id}
-        // if(userDetails){
-        //     console.log("trying to update data:");
-        // }else{
-        //     console.log("trying to create document for user data:")
-        // }
-        console.log("mydata:",data);
+        if(userDetails){
+            console.log("trying to update data:");
+            try {
+                
+                service.updateUserDetails(data).then((data)=>{
+                    console.log("updated successfully")
+                    navigate("/user/dashboard")
+                })
+                
+            } catch (err) {
+                console.log("update unsuccessfull")
+                throw err;
+            }
+            
+        }else{
+            console.log("trying to create document for user data:")
+            try {
+                
+                service.createUserDetails(data).then((status)=>{
+                    console.log("status :",status)
+                    navigate("/user/dashboard")
+                    
+                })
 
-        // service.updataDetails(data);
+            } catch (err) {
+                throw err;
+            }
+        }
+        
+
+        
     }
     return userData && (
 
@@ -81,29 +114,27 @@ function Edit(){
                         <InputField 
                             type="text"
                             // value={profileData?profileData.name:"Username"}
-                            defaultValue={getValues("name")}
-                            onChange={(e)=> setValue("name",e.target.value)}
+                            defaultValue={getValues("Name")}
                             placeholder="Username"
-                            
                             className="w-full px-4 py-3   border  hover:border-[#1080e9]  focus:outline-none focus:border-1 focus:border-[#1080e9] rounded-md "
-                            {...register("name")}  
+                            {...register("Name")}  
                         />
                         <InputField 
                             type="email"
-                            // placeholder="Email"
-                            value={userData? userData.email:"Email"}
+                            placeholder="Email"
+                            defaultValue={getValues("Email")}
                             className="w-full px-4 py-3 my-4   border focus:outline-none  text-[#00000075]  rounded-md " 
-                            // readOnly={true}
                             disabled={true}
                         />
                         <textarea 
                             name="about" 
                             id="about"  
                             rows="10" 
+                            defaultValue={getValues("about")}
                             placeholder='About' 
                             readOnly={false} 
                             className='w-full px-4 py-3 border  hover:border-[#1080e9]  focus:outline-none focus:border-1 focus:border-[#1080e9] rounded-md'
-                            {...register("about")}
+                            {...register("About")}
                         >
                             
                         </textarea>
@@ -113,18 +144,20 @@ function Edit(){
                                 <img src="/src/assets/instagram.png " alt="" className='w-8 h-8' />
                                 <InputField 
                                     type="text"
+                                    defaultValue={getValues("Instagram")}
                                     placeholder="Instagram URL"
                                     className="w-full px-4 py-1.5 ml-4   border  hover:border-[#1080e9]  focus:outline-none focus:border-1 focus:border-[#1080e9] rounded-md "
-                                    {...register("instagram_link")}  
+                                    {...register("Instagram")}  
                                 />
                             </div>
                             <div className=' flex items-center py-3'>                            
                                 <img src="/src/assets/facebook.png " alt="" className='w-8 h-8' />
                                 <InputField 
                                     type="text"
+                                    defaultValue={getValues("Facebook")}
                                     placeholder="Facebook URL"
                                     className="w-full px-4 py-1.5 ml-4   border  hover:border-[#1080e9]  focus:outline-none focus:border-1 focus:border-[#1080e9] rounded-md "
-                                    {...register("facebook_link")}  
+                                    {...register("Facebook")}  
                                 />
                             </div>
                             <div className=' flex items-center py-3'>                            
@@ -132,8 +165,9 @@ function Edit(){
                                 <InputField 
                                     type="text"
                                     placeholder="Twitter URL"
+                                    defaultValue={getValues("Twitter")}
                                     className="w-full px-4 py-1.5 ml-4   border  hover:border-[#1080e9]  focus:outline-none focus:border-1 focus:border-[#1080e9] rounded-md "
-                                    {...register("twitter_link")}  
+                                    {...register("Twitter")}  
                                 />
                             </div>
                             
