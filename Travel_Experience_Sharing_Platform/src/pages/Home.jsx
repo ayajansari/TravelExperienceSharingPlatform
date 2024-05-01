@@ -210,7 +210,8 @@ function Home({
         <div className="">
 
             {/* main content */}
-            <div className="w-full pt-64 pb-64    bg-cover  bg-[url('landing4.png')] " > 
+            <div className="w-full pt-64 pb-64    bg-cover"  style={{ backgroundImage: `url('landing4.png')` }}  > 
+            {/* bg-[url('landing4.png')]  */}
                 <div className="flex flex-col w-2/3 lg:w-2/4 mx-auto">
                     <h1 className="lg:text-5xl md:text-4xl text-3xl font-bold text-white text-center" >Share Your Journeys, Connect with Travelers</h1>
                     <h3 className=" text-center text-lg mt-4 mx-3/4 text-[#ffffffbb]">Discover, share and connect with fellow travelers on our vibrant platform </h3>
