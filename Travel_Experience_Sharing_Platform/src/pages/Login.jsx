@@ -99,7 +99,7 @@ function Login(){
                             onClick={()=> setPasswordVisible(!passwordVisible)}
                             
                             >
-                            {passwordVisible ? (<img src="/src/assets/open.png" />) :(<img src="/src/assets/hide.png" />) }
+                            {passwordVisible ? (<img src="../src/assets/open.png" />) :(<img src="/src/assets/hide.png" />) }
                         </button>
                     </div>
                     

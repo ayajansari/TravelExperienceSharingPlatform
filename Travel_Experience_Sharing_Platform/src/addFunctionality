@@ -1,3 +1,4 @@
+#add google and github login,signup
 #email verification and show some content only to verified users
 #forgot password
 #change appwrite and use mongodb as db backend and (auth service will be appwrite)
