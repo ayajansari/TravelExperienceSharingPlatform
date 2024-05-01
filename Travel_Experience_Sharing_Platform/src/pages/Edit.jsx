@@ -134,7 +134,7 @@ function Edit(){
                         <div className='w-full px-6 pt-4 pb-6 my-3   border  rounded-md'>
                             <h1 className='text-lg text-[#9CA3AF]'>Social Media Links</h1>
                             <div className=' flex items-center py-3 '>                            
-                                <img src="/src/assets/instagram.png " alt="" className='w-8 h-8' />
+                                <img src="instagram.png " alt="" className='w-8 h-8' />
                                 <InputField 
                                     type="text"
                                     defaultValue={getValues("Instagram")}
@@ -144,7 +144,7 @@ function Edit(){
                                 />
                             </div>
                             <div className=' flex items-center py-3'>                            
-                                <img src="/src/assets/facebook.png " alt="" className='w-8 h-8' />
+                                <img src="facebook.png " alt="" className='w-8 h-8' />
                                 <InputField 
                                     type="text"
                                     defaultValue={getValues("Facebook")}
@@ -154,7 +154,7 @@ function Edit(){
                                 />
                             </div>
                             <div className=' flex items-center py-3'>                            
-                                <img src="/src/assets/twitter.png " alt="" className='w-8 h-8' />
+                                <img src="twitter.png " alt="" className='w-8 h-8' />
                                 <InputField 
                                     type="text"
                                     placeholder="Twitter URL"

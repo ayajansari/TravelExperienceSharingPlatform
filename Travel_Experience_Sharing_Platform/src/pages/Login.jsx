@@ -55,7 +55,7 @@ function Login(){
             
             <div className=" flex flex-col  px-6 py-4 "> 
             
-                <img src="/src/assets/Brand_name.png" className="h-12 px-16 my-4 bg-white"  alt="" />
+                <img src="Brand_name.png" className="h-12 px-16 my-4 bg-white"  alt="" />
                 <p className="text-center text-black text-lg mb-2 font-semibold">Welcome Back</p>
                 {/* <div className="px-2 py-2 m-2 font-semibold text-center text-lg text-white bg-[#00a6fb] rounded-sm  ">Continue with Google</div> */}
                 {/* <div className="px-2 py-2 m-2 font-semibold text-center text-lg text-white bg-[#00a6fb] rounded-sm   ">Continue with Facebook</div> */}
@@ -99,7 +99,7 @@ function Login(){
                             onClick={()=> setPasswordVisible(!passwordVisible)}
                             
                             >
-                            {passwordVisible ? (<img src="../src/assets/open.png" />) :(<img src="/src/assets/hide.png" />) }
+                            {passwordVisible ? (<img src="open.png" />) :(<img src="hide.png" />) }
                         </button>
                     </div>
                     

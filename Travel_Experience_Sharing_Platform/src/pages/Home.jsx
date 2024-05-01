@@ -210,7 +210,7 @@ function Home({
         <div className="">
 
             {/* main content */}
-            <div className="w-full pt-64 pb-64    bg-cover  bg-[url('src/assets/landing4.png')] " > 
+            <div className="w-full pt-64 pb-64    bg-cover  bg-[url('landing4.png')] " > 
                 <div className="flex flex-col w-2/3 lg:w-2/4 mx-auto">
                     <h1 className="lg:text-5xl md:text-4xl text-3xl font-bold text-white text-center" >Share Your Journeys, Connect with Travelers</h1>
                     <h3 className=" text-center text-lg mt-4 mx-3/4 text-[#ffffffbb]">Discover, share and connect with fellow travelers on our vibrant platform </h3>
@@ -244,9 +244,9 @@ function Home({
             <div className="w-full bg-white mt-8">
                 <p className="mx-6 text-3xl text-center font-semibold">Explore our platform's key features</p>
                 <div className="w-full pt-8 pb-16 flex xsm:flex-row flex-col justify-center   text-center  "> 
-                    <FeatureCard src="/src/assets/feature1.png" label="Share your Travel Experience with others" />
-                    <FeatureCard src="/src/assets/feature2.jpg" label="Know more about your Destination" />
-                    <FeatureCard src="/src/assets/feature3.jpg" label="Search Experiences across the world" />         
+                    <FeatureCard src="feature1.png" label="Share your Travel Experience with others" />
+                    <FeatureCard src="feature2.jpg" label="Know more about your Destination" />
+                    <FeatureCard src="feature3.jpg" label="Search Experiences across the world" />         
                 </div>
             </div>
 
