@@ -43,7 +43,7 @@ function Signup(){
             <div className=" border border-r-2 rounded-lg  max-w-sm m-2 bg-white" >
                 <div className=" flex flex-col  px-6 py-4 "> 
                 
-                    <img src="../../assets/Brand_name.png" className="h-12 px-16 my-4 bg-white"  alt="" />
+                    <img src="Brand_name.png" className="h-12 px-16 my-4 bg-white"  alt="" />
                     <p className="text-center text-black text-lg mb-2 font-semibold">Sign Up</p> 
                     {error && (<p className="text-center text-red-800 text-sm mb-2 ">{error}</p>  )}         
                     
