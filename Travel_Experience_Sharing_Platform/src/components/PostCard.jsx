@@ -51,7 +51,7 @@ function PostCard({ $id,title,featuredImage,city,country}){
                 </div> 
                 <h2 className=" text-start md:text-md   pb-2"> {title} </h2>
                 <div className='flex items-center'>
-                    <img src="/src/assets/gps.png" alt="" className='w-8' />
+                    <img src="gps.png" alt="" className='w-8' />
                     <p className='pl-2'>{city+","+country}</p>
                 </div>
                 
