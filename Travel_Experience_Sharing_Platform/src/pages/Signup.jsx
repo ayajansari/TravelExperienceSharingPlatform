@@ -15,7 +15,7 @@ function Signup(){
     const dispatch=useDispatch()
     const navigate=useNavigate()
     const [error,setError]=useState("");
-
+    const [isDisable,setIsDisable]=useState(true)
     const formSubmit=async(data)=>{
 
         try {
@@ -96,11 +96,12 @@ function Signup(){
                                 name="check" 
                                 id="check" 
                                 className="mb-4  "
+                                onChange={(e)=> setIsDisable(!isDisable)}
                                 required
                             /> 
                             <p className="ml-2 text-sm"> I agree to the all User agreements & Privacy Policy.</p>
                         </div>
-                        <InputButton type="submit" content="Submit"  className="px-2 py-2 m-2 font-semibold text-lg bg-[#006494] text-white rounded-sm " />
+                        <InputButton type="submit" disabled={isDisable} content="Submit"  className="px-2 py-2 m-2 font-semibold text-lg bg-[#006494] text-white disabled:bg-[#00000024] rounded-sm " />
                         
                     
                     </form >
