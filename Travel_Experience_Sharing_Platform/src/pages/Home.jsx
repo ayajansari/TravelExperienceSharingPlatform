@@ -231,10 +231,10 @@ function Home({
             </div>
             
             {/* experience the power of community section  */}
-            <div className="flex flex-col text-center justify-center w-full mt-16  ">
+            <div className="flex flex-col text-center justify-center w-full mt-20  ">
                 <p className="mx-6 text-4xl font-semibold">Experience the power of Community</p>
                 <p className="w-2/3 mx-auto pt-2 text-[#000000b5] text-lg">Discover the magic of travel through authentic stories and experiences </p>
-                <div className="flex xsm:flex-row flex-col justify-center  md:mx-32 xsm:mx-8 mx-6 my-4">
+                <div className="flex xsm:flex-row flex-col justify-center  md:mx-32 xsm:mx-8 mx-6 my-6">
                     <CommunityCard value="999K+" lable="Modules to learn" />
                     <CommunityCard value="99K+" lable="Active Travelers" />
                     <CommunityCard value="199+" lable="Country Experiences" />      
@@ -242,9 +242,9 @@ function Home({
             </div>
 
             {/* features section */}
-            <div className="w-full bg-white mt-8">
+            <div className="w-full bg-white mt-12">
                 <p className="mx-6 text-4xl text-center font-semibold">Explore our platform's key features</p>
-                <div className="w-full pt-8 pb-16 flex xsm:flex-row flex-col justify-center   text-center  "> 
+                <div className="w-full pt-12 pb-16 flex xsm:flex-row flex-col justify-center   text-center  "> 
                     <FeatureCard src="feature1.png" label="Share your Travel Experience with others" />
                     <FeatureCard src="feature2.jpg" label="Know more about your Destination" />
                     <FeatureCard src="feature3.jpg" label="Search Experiences across the world" />         
@@ -252,7 +252,7 @@ function Home({
             </div>
 
             {/*testimonials  */}
-            <div className="">
+            <div className="mt-4">
                 <div className="">
                     <p className="mx-6 text-4xl text-center font-semibold">Loved by users worldwide</p>
                     <p className="w-2/3 mx-auto pt-2 text-center text-[#000000b5] text-lg">Discover What Others Have Experienced </p>
