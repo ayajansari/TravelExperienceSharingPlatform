@@ -232,7 +232,7 @@ function Home({
             
             {/* experience the power of community section  */}
             <div className="flex flex-col text-center justify-center w-full mt-16  ">
-                <p className="mx-6 text-3xl font-semibold">Experience the power of Community</p>
+                <p className="mx-6 text-4xl font-semibold">Experience the power of Community</p>
                 <p className="w-2/3 mx-auto pt-2 text-[#000000b5] text-lg">Discover the magic of travel through authentic stories and experiences </p>
                 <div className="flex xsm:flex-row flex-col justify-center  md:mx-32 xsm:mx-8 mx-6 my-4">
                     <CommunityCard value="999K+" lable="Modules to learn" />
@@ -243,7 +243,7 @@ function Home({
 
             {/* features section */}
             <div className="w-full bg-white mt-8">
-                <p className="mx-6 text-3xl text-center font-semibold">Explore our platform's key features</p>
+                <p className="mx-6 text-4xl text-center font-semibold">Explore our platform's key features</p>
                 <div className="w-full pt-8 pb-16 flex xsm:flex-row flex-col justify-center   text-center  "> 
                     <FeatureCard src="feature1.png" label="Share your Travel Experience with others" />
                     <FeatureCard src="feature2.jpg" label="Know more about your Destination" />
@@ -254,11 +254,11 @@ function Home({
             {/*testimonials  */}
             <div className="">
                 <div className="">
-                    <p className="mx-6 text-3xl text-center font-semibold">Loved by users worldwide</p>
+                    <p className="mx-6 text-4xl text-center font-semibold">Loved by users worldwide</p>
                     <p className="w-2/3 mx-auto pt-2 text-center text-[#000000b5] text-lg">Discover What Others Have Experienced </p>
                 </div>
                 
-                <div id="custom-ScrollBar" className="  flex   overflow-x-scroll   flex-nowrap mx-4 sm:mx-8 md:mx-16 lg:mx-20 xl:mx-28 mt-6 mb-20 bg-[#ffffff8e]">
+                <div id="custom-ScrollBar" className="  flex   overflow-x-scroll   flex-nowrap mx-4 sm:mx-16 md:mx-20 lg:mx-24 xl:mx-56 mt-6 mb-20 bg-[#ffffff8e]">
                     <TestimonialCard 
                         label="I've been a part of this amazing travel community for years, and it never fails to inspire me. From hidden gems to insider tips, I've discovered countless treasures thanks to the shared experiences of fellow travelers."
                         user="- Raj S"
@@ -275,14 +275,14 @@ function Home({
                         label="Being a part of this community has reignited my passion for travel and opened my eyes to new possibilities. "
                         user="- Ayaj A"
                     />
-                    <TestimonialCard 
+                    {/* <TestimonialCard 
                         label="This platform has been a lifeline for me during the pandemic, allowing me to stay connected with the travel community and dream about future adventures."
                         user="- Maria S"
                     />
                     <TestimonialCard 
                         label="I've been a part of this amazing travel community for years, and it never fails to inspire me. From hidden gems to insider tips, I've discovered countless treasures thanks to the shared experiences of fellow travelers."
                         user="- Gaurav S"
-                    />
+                    /> */}
                 </div>
             </div>    
         </div>
