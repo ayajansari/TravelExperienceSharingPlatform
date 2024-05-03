@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { InputButton } from '../exports';
 function Settings(){
-    const [passwordVisible,setPasswordVisible]=useState(false)
+    const [passwordVisible1,setPasswordVisible1]=useState(false)
+    const [passwordVisible2,setPasswordVisible2]=useState(false)
     const [oldPassword,setOldPassword]=useState()
     const [newPassword,setNewPassword]=useState()
     const [isDisable,setIsDisable]=useState(true)
@@ -18,7 +19,7 @@ function Settings(){
 
                     <div  className="flex  px-2 mt-5 border hover:border-[#1080e9]  rounded-md">
                         <input 
-                            type={passwordVisible? 'text':'password'} 
+                            type={passwordVisible1? 'text':'password'} 
                             placeholder="Old Password" 
                             className="w-full py-3 focus:outline-none "
 
@@ -26,16 +27,16 @@ function Settings(){
                         <button
                             type="button"
                             className="w-8 pl-2"
-                            onClick={()=> setPasswordVisible(!passwordVisible)}
+                            onClick={()=> setPasswordVisible1(!passwordVisible1)}
                         >
-                            {passwordVisible ? (<img src="open.png" />) :(<img src="hide.png" />) }
+                            {passwordVisible1 ? (<img src="/images/open.png" />) :(<img src="/images/hide.png" />) }
                         </button>
 
                         
                     </div>
                     <div  className="flex  px-2 mt-5 border hover:border-[#1080e9]  rounded-md">
                         <input 
-                            type={passwordVisible? 'text':'password'} 
+                            type={passwordVisible2? 'text':'password'} 
                             placeholder="New Password" 
                             className="w-full py-3 focus:outline-none "
 
@@ -43,9 +44,9 @@ function Settings(){
                         <button
                             type="button"
                             className="w-8 pl-2"
-                            onClick={()=> setPasswordVisible(!passwordVisible)}
+                            onClick={()=> setPasswordVisible2(!passwordVisible2)}
                         >
-                            {passwordVisible ? (<img src="open.png" />) :(<img src="hide.png" />) }
+                            {passwordVisible2 ? (<img src="/images/open.png" />) :(<img src="/images/hide.png" />) }
                         </button>
 
                         

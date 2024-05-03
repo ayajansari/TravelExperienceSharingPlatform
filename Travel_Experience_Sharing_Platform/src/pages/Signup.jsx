@@ -86,7 +86,7 @@ function Signup(){
                                 className="w-8 pl-2"
                                 onClick={()=> setPasswordVisible(!passwordVisible)}
                             >
-                                {passwordVisible ? (<img src="open.png" />) :(<img src="hide.png" />) }
+                                {passwordVisible ? (<img src="/images/open.png" />) :(<img src="/images/hide.png" />) }
                             </button>
                         </div>
                         

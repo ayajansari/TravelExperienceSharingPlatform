@@ -17,31 +17,31 @@ function Header(){
             name:"Home",
             slug:"/",
             active:true,
-            img:"home1.png"     
+            img:"/images/home1.png"     
         },
         {
             name:"Login",
             slug:"/login",
             active:!authStatus,
-            img:"login.png"
+            img:"/images/login.png"
         },
         {
             name:"Signup",
             slug:"/signup",
             active:!authStatus,
-            img:"signup1.png"
+            img:"/images/signup1.png"
         },
         {
             name:"My Posts",
             slug:"/my-posts",
             active:authStatus,
-            img:"to-do-list.png"
+            img:"/images/to-do-list.png"
         },
         {
             name:"Add Post",
             slug:"/add-post",
             active:authStatus,
-            img:"add-post1.png"
+            img:"/images/add-post1.png"
         }
     ]
 
@@ -58,7 +58,7 @@ function Header(){
                         className=" md:hidden inline-block my-2 pt-2 " 
                         onClick={()=>setshowMenu(!showMenu)}   
                     >
-                        <img src="menu-bar.png" className="w-8 h-full" alt="" />
+                        <img src="/images/menu-bar.png" className="w-8 h-full" alt="" />
                     </div>
                     
                     {/* logo */}
@@ -88,7 +88,7 @@ function Header(){
                     {/* theme-change button and profile button  */}
                     <div className="flex mt-3 mb-2">
                         <div className="px-2 pt-2  rounded-full  mr-2  md:ml-1  md:mr-1 md:inline-block  hover:bg-[#F5F5F5] hover:cursor-pointer " >
-                            <img src="night-mode.png" className="w-6" alt="" />
+                            <img src="/images/night-mode.png" className="w-6" alt="" />
                         </div>
                         {authStatus && (
                             <div 
@@ -102,7 +102,7 @@ function Header(){
                                     <div className="absolute top-14 right-4 w-72 flex flex-col mt-2  bg-white rounded-md  shadow-2xl" >
 
                                         <div className="flex items-center px-4 py-3 border-b  border-b-[#d5dde1]">
-                                            <img src="user.png" className="pr-4  w-12"  alt="" />
+                                            <img src="/images/user.png" className="pr-4  w-12"  alt="" />
                                             <span className="inline-block text-[#2F87FE] text-lg font-semibold">{authData.name}</span>
                                         </div>
 

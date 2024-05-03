@@ -51,12 +51,12 @@ function Dashboard(){
     
                         <div className='   px-6 py-4 mb-4 bg-white shadow-lg rounded-lg'>
                             <div className='flex lg:flex-col items-center flex-row'>
-                                <img src="user (3).png" className="  lg:w-24 w-20   "  alt="" />
+                                <img src="/images/user (3).png" className="  lg:w-24 w-20   "  alt="" />
                                 <div className='mb-4 lg:pl-0 pl-6'>
                                     <div className='flex lg:justify-center items-center lg:pt-3'>
                                         <p className='text-xl pr-1 '>{userDetails && userDetails.Name}</p>
                                         {userData && userData.emailVerification &&  (
-                                            <img src="verified_user.png" alt="" className='w-4 h-4 mt-1' />
+                                            <img src="/images/verified_user.png" alt="" className='w-4 h-4 mt-1' />
                                         )}
                                     </div>
                                     
@@ -76,15 +76,15 @@ function Dashboard(){
                             </div>
                             <div className='py-3 overflow-scroll  ' id='custom-ScrollBar'>
                                 <div className='flex py-1'>
-                                    <img src="instagram.png" alt="" className='w-6 h-6 ' />
+                                    <img src="/images/instagram.png" alt="" className='w-6 h-6 ' />
                                     <a className='pl-2'> {userDetails ? userDetails.Instagram :" https://www.instagram.com/user_name"}</a>
                                 </div>
                                 <div className='flex py-2'>
-                                    <img src="facebook.png" alt="" className='w-6 h-6 ' />
+                                    <img src="/images/facebook.png" alt="" className='w-6 h-6 ' />
                                     <a className='pl-2' > {userDetails ? userDetails.Facebook :" https://www.facebook.com/user_name"}</a>
                                 </div>
                                 <div className='flex py-1'>
-                                    <img src="twitter.png" alt="" className='w-6 h-6 ' />
+                                    <img src="/images/twitter.png" alt="" className='w-6 h-6 ' />
                                     <a className='pl-2'>{userDetails ? userDetails.Twitter :" https://www.twitter.com/user_name"}</a>
                                 </div>
 
