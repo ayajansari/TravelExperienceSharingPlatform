@@ -65,12 +65,31 @@ class Authentication{
         
     }
 
+    async changePass(password,oldPassword){
+        try {
+            return await this.account.updatePassword(
+                password,
+                oldPassword
+            );
+            
+        } catch (error) {
+            throw error;
+
+        }
+    }
+
 }
+
+
+
+
+
+
 const authService=new Authentication()
 export default authService;
 
-export var universalTutorialAuthToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJzaGFyZXRyYXZlbGV4cDIwMjRAZ21haWwuY29tIiwiYXBpX3Rva2VuIjoicnNUenYtT0l6eXJ2ODdVc3o3djBwTEtoa1g1WVlmcGFMWGp6VUxkM3BBU19TQ1VkcjdDaFBBVzVmVThOUEdBTVdYQSJ9LCJleHAiOjE3MTQ3NDA3NTh9.Llk1_e5pdD8UAYwut0B6L5zRvksns43DNbPGEToK7_A"
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJzaGFyZXRyYXZlbGV4cDIwMjRAZ21haWwuY29tIiwiYXBpX3Rva2VuIjoicnNUenYtT0l6eXJ2ODdVc3o3djBwTEtoa1g1WVlmcGFMWGp6VUxkM3BBU19TQ1VkcjdDaFBBVzVmVThOUEdBTVdYQSJ9LCJleHAiOjE3MTA0OTY1ODN9.2Mrn1nXDVfsDc127upqMHiE_eJ-HLjTl8XIUCNZj4SA
+export var universalTutorialAuthToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJzaGFyZXRyYXZlbGV4cDIwMjRAZ21haWwuY29tIiwiYXBpX3Rva2VuIjoicnNUenYtT0l6eXJ2ODdVc3o3djBwTEtoa1g1WVlmcGFMWGp6VUxkM3BBU19TQ1VkcjdDaFBBVzVmVThOUEdBTVdYQSJ9LCJleHAiOjE3MTY2Mjg1NTF9.5QCRP65737WhTk-E_ypLQaja0dQiipRLdQhfLqadUAQ"
+
 setInterval(() => {
     // console.log("fetching")
     const fetchApi=async()=>{
@@ -103,5 +122,5 @@ setInterval(() => {
     fetchApi()
     
 
-},12*60*60*1000);
+},60*60*1000);
 
