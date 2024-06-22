@@ -5,6 +5,8 @@
 #change appwrite and use mongodb as db backend and (auth service will be appwrite)
 #color the options on which user is currently using
 #use nodejs+expressjs in backend use postman for api 
-#
+
 #create selectComponent and replace select tags from postform
 #create div in post/:slug where show author name date of publishement of post
+
+#learning git_commands
