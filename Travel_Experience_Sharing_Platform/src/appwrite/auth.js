@@ -44,6 +44,16 @@ class Authentication{
         }
     }
 
+    async loginByGoogle(){
+
+        this.account.createOAuth2Session('google', "http://localhost:5173/","http://localhost:5173/signup")    
+    }
+
+    async loginByGithub(){
+
+        this.account.createOAuth2Session('github', "http://localhost:5173/","http://localhost:5173/signup")
+    }
+
     async getCurrentUser(){
         try{
             return this.account.get()

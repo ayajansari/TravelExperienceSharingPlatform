@@ -38,12 +38,15 @@ function Login(){
         
 
     }
-    const loginByGoogle=()=>{
-        console.log("google login working")
+
+    const loginGoogle=()=>{
+        authService.loginByGoogle();
     }
-    const loginByFacebook=()=>{
-        console.log("fb login working")
+    
+    const loginGithub=()=>{
+        authService.loginByGithub();
     }
+
     
     return (
         <div  className=" flex  justify-center items-center h-screen  bg-slate-100">
@@ -59,8 +62,8 @@ function Login(){
                 <p className="text-center text-black text-lg mb-2 font-semibold">Welcome Back</p>
                 {/* <div className="px-2 py-2 m-2 font-semibold text-center text-lg text-white bg-[#00a6fb] rounded-sm  ">Continue with Google</div> */}
                 {/* <div className="px-2 py-2 m-2 font-semibold text-center text-lg text-white bg-[#00a6fb] rounded-sm   ">Continue with Facebook</div> */}
-                <InputButton className="bg-[#00a6fb] px-2 py-2 m-2 font-semibold text-center text-lg text-white  rounded-sm" content={"Continue with Google"}  onClick={loginByGoogle} />
-                <InputButton className="bg-[#00a6fb] px-2 py-2 m-2 font-semibold text-center text-lg text-white  rounded-sm" content={"Continue with Facebook"} onClick={loginByFacebook} />
+                <InputButton className="bg-[#00a6fb] px-2 py-2 m-2 font-semibold text-center text-lg text-white  rounded-sm" content={"Continue with Google"}  onClick={loginGoogle} />
+                <InputButton className="bg-[#00a6fb] px-2 py-2 m-2 font-semibold text-center text-lg text-white  rounded-sm" content={"Continue with Github"} onClick={loginGithub} />
 
                 
                 
