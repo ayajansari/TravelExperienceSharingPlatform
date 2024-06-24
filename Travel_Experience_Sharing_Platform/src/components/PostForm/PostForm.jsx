@@ -304,7 +304,7 @@ function PostForm({post}){
                         </div>
                     </div>
                     {error && (
-                        <div className="text-slate-400">
+                        <div className="text-red-700 ">
                             {error}
                         </div>
                     )}
