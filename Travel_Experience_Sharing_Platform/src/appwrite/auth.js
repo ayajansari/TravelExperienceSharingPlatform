@@ -46,7 +46,7 @@ class Authentication{
 
     async loginByGoogle(){
 
-        this.account.createOAuth2Session('google', "https://travel-experience-sharing-platform.vercel.app","https://travel-experience-sharing-platform.vercel.app/signup")    
+        this.account.createOAuth2Session('google', "https://travel-experience-sharing-platform.vercel.app","/signup")    
     }
 
     async loginByGithub(){
