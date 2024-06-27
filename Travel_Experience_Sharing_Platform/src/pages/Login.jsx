@@ -39,8 +39,8 @@ function Login(){
 
     }
 
-    const loginGoogle=()=>{
-        authService.loginByGoogle();
+    const loginGoogle=async()=>{
+        await authService.loginByGoogle();
     }
     
     const loginGithub=()=>{

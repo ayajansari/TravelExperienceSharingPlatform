@@ -46,18 +46,14 @@ class Authentication{
 
     async loginByGoogle(){
 
+        return this.account.createOAuth2Session('google', 'https://travel-experience-sharing-platform.vercel.app/', 'https://travel-experience-sharing-platform.vercel.app/signup');
             
-        await  this.account.createOAuth2Session('google', 'https://travel-experience-sharing-platform.vercel.app/','https://travel-experience-sharing-platform.vercel.app/signup')    
-                
-                
-            
-            
-        
+               
     }
 
     async loginByGithub(){
 
-         this.account.createOAuth2Session('github', 'http://localhost:5173','http://localhost:5173/signup')
+         this.account.createOAuth2Session('github', 'https://travel-experience-sharing-platform.vercel.app/','https://travel-experience-sharing-platform.vercel.app/signup')
     }
 
     async getCurrentUser(){
